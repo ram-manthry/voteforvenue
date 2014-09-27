@@ -1,0 +1,32 @@
+{
+    "name": "voteforvenue",
+    "version": "0.0.0",
+    "homepage": "https://github.com/ram-manthry/voteforvenue",
+    "authors": [
+    "ram-manthry <ram.manthry@gmail.com>"
+    ],
+    "description": "App for voting for a venue",
+    "moduleType": [
+    "node"
+    ],
+    "keywords": [
+    "vote",
+    "venue",
+    "restaurant",
+    "event"
+    ],
+    "license": "MIT",
+    "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+    ],
+    "dependencies": {
+        "toastr": "~2.0.3",
+        "angular": "~1.2.25",
+        "angular-resource": "~1.2.25",
+        "angular-route": "~1.2.25"
+    }
+}
