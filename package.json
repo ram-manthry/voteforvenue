@@ -1,0 +1,25 @@
+{
+  "name": "voteforvenue",
+  "version": "1.0.0",
+  "description": "app for voting a venue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ram-manthry/voteforvenue.git"
+  },
+  "keywords": [
+    "vote",
+    "venue",
+    "retuarant",
+    "event"
+  ],
+  "author": "Ram Manthry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ram-manthry/voteforvenue/issues"
+  },
+  "homepage": "https://github.com/ram-manthry/voteforvenue"
+}
