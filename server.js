@@ -45,8 +45,15 @@ app.use(express.static(__dirname + '/public'));
 //app.get('/',function(req,res){
 //    res.render('index');
 //});
-app.get('/', function(request, response){
-    response.render("index");
+app.get('/', function(request, response,next){
+    response.render("index",{cache: false}, function (err, html) {
+        try{
+            if(err) throw err;
+            response.send(html);
+        }catch(e){
+            next(e);
+        }
+    });
 });
 //app.use(notFound);
 //app.use(errorHandler);
