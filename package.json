@@ -1,35 +1,37 @@
 {
-    "name": "voteforvenue",
-    "version": "1.0.0",
-    "description": "app for voting a venue",
-    "main": "server.js",
-    "scripts": {
+  "name": "voteforvenue",
+  "version": "1.0.0",
+  "description": "app for voting a venue",
+  "main": "server.js",
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
+  },
+  "repository": {
     "type": "git",
     "url": "https://github.com/ram-manthry/voteforvenue.git"
-    },
-    "keywords": [
+  },
+  "keywords": [
     "vote",
     "venue",
     "retuarant",
     "event"
-    ],
-    "author": "Ram Manthry",
-    "license": "ISC",
-    "bugs": {
+  ],
+  "author": "Ram Manthry",
+  "license": "ISC",
+  "bugs": {
     "url": "https://github.com/ram-manthry/voteforvenue/issues"
-    },
-    "homepage": "https://github.com/ram-manthry/voteforvenue",
-    "dependencies": {
-        "express": "^4.9.5",
-        "express-handlebars": "^1.1.0",
-        "morgan": "^1.3.1",
-        "toastr": "^2.0.4",
-        "mocha": "^1.21.4"
-    },
-    "devDependencies": {
-        "bower": "^1.3.11"
-    }
+  },
+  "homepage": "https://github.com/ram-manthry/voteforvenue",
+  "dependencies": {
+    "consolidate": "^0.10.0",
+    "express": "^4.9.5",
+    "express-handlebars": "^1.1.0",
+    "mocha": "^1.21.4",
+    "morgan": "^1.3.1",
+    "swig": "^1.4.2",
+    "toastr": "^2.0.4"
+  },
+  "devDependencies": {
+    "bower": "^1.3.11"
+  }
 }
