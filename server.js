@@ -22,11 +22,11 @@ app.engine('html', engines.swig);
 app.set('views','./views');
 app.set('view engine', 'html');
 
-
-
-app.set("view options", {
-    layout: false
-});
+//
+//
+//app.set("view options", {
+//    layout: false
+//});
 //
 //app.engine('html', function(path, options, fn){
 //    var cacheLocation = path + ':html';
