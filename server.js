@@ -5,16 +5,8 @@ var express = require('express'),
     mongoose = require('mongoose');
 
 var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
-
-mongoose.connect(uri,function(err,db){
-    if(err){
-        console.log("Error: unable to connect to database");
-        return;
-    }
-});
-
-
-mongoose.model('users',{name:String});
+var UserList = require('./controllers/userController.js');
+var userList = new UserList(uri);
 
 // ### Middleware to handle 404
 var notFound = function(req,res,next){
@@ -38,10 +30,13 @@ app.get('/', function(request, response,next){
     response.render("index",{cache: false});
 });
 app.get('/users', function(request, response,next){
-    mongoose.model('users').find(function(err,users){
-        response.send(users);
-    });
+    console.log('in users');
+    var users = userList.getUsers(response);
+    console.log('got users');
+    console.log(users);
+
 });
+
 app.use(notFound);
 app.use(errorHandler);
 
