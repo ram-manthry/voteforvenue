@@ -1,7 +1,20 @@
 var express = require('express'),
     logger = require('morgan'),
     engines = require('consolidate'),
-    swig = require('swig');
+    swig = require('swig'),
+    mongoose = require('mongoose');
+
+var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
+
+mongoose.connect(uri,function(err,db){
+    if(err){
+        console.log("Error: unable to connect to database");
+        return;
+    }
+});
+
+
+mongoose.model('users',{name:String});
 
 // ### Middleware to handle 404
 var notFound = function(req,res,next){
@@ -23,6 +36,11 @@ app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 app.get('/', function(request, response,next){
     response.render("index",{cache: false});
+});
+app.get('/users', function(request, response,next){
+    mongoose.model('users').find(function(err,users){
+        response.send(users);
+    });
 });
 app.use(notFound);
 app.use(errorHandler);
