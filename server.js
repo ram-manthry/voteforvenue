@@ -2,7 +2,8 @@ var express = require('express'),
     logger = require('morgan'),
     engines = require('consolidate'),
     swig = require('swig'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    eventController = require('./controllers/eventController');
 
 var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
 var UserList = require('./controllers/userController.js');
@@ -30,11 +31,10 @@ app.get('/', function(request, response,next){
     response.render("index",{cache: false});
 });
 app.get('/users', function(request, response,next){
-    console.log('in users');
-    var users = userList.getUsers(response);
-    console.log('got users');
-    console.log(users);
-
+    userList.getUsers(response);
+});
+app.get('/events', function(request, response,next){
+    eventController.getEvents(response);
 });
 
 app.use(notFound);
