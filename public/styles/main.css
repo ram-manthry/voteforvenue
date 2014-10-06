@@ -1,3 +1,8 @@
 body{
     background-color: lightgoldenrodyellow;
 }
+
+.eventOverview {
+    list-style-type:none;
+    float:left;
+}
