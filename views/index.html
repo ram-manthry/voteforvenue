@@ -92,35 +92,39 @@
     
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="venue in events">
-        <div class="bs-component">
-          <div class="modal">
-            <div class="modal-sm">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <div class="row modal-title">
-                    <span class="col-lg-4 col-md-4 col-sm-3 hidden-xs"><img src="../images/venueBlue64.png"></a></span>
-                    <span class="col-lg-8 col-md-8 col-sm-9"><h2 class="modal-title">[{venue.title}]</h2></span>
+
+        <a href="/venue">
+          <div class="bs-component">
+            <div class="modal">
+              <div class="modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="row modal-title">
+                      <span class="col-lg-4 col-md-4 col-sm-3 hidden-xs"><img src="../images/venueBlue64.png"></a></span>
+                      <span class="col-lg-8 col-md-8 col-sm-9"><h2 class="modal-title">[{venue.title}]</h2></span>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div><strong>Date: </strong><span ng-bind="venue.eventDate"></span></div>
+                    <div><strong>Place: </strong><span>[{venue.votingEndsOn}]</span></div>
+                    <div><strong>Invited: </strong>
+                      <span>Ewerton</span>
+                      <span>Ram</span>
+                      <span>Pradeep</span>
+                    </div>
+                  </div>
+                  <div class="modal-footer">                      
+                    <button type="button" class="btn btn-success">
+                      <span class="glyphicon glyphicon-thumbs-up"></span>
+                      Vote
+                    </button>
                   </div>
                 </div>
-                <div class="modal-body">
-                  <div><strong>Date: </strong><span ng-bind="venue.eventDate"></span></div>
-                  <div><strong>Place: </strong><span>[{venue.votingEndsOn}]</span></div>
-                  <div><strong>Invited: </strong>
-                    <span>Ewerton</span>
-                    <span>Ram</span>
-                    <span>Pradeep</span>
-                  </div>
-                </div>
-                <div class="modal-footer">                      
-                  <button type="button" class="btn btn-success">
-                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                    Vote
-                  </button>
-                </div>
-              </div>
-            </div>            
-          </div>   
-        </div>
+              </div>            
+            </div>   
+          </div>
+        </a>
+
       </div>
     </div>
     

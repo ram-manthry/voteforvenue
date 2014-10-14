@@ -30,6 +30,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(request, response,next){
     response.render("index",{cache: false});
 });
+app.get('/venue', function(request, response,next){
+    response.render("venue",{cache: false});
+});
 
 app.get('/users', function(request, response,next){
     userList.getUsers(response);
