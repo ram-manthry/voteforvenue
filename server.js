@@ -28,8 +28,9 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 app.get('/', function(request, response,next){
-    response.render("index",events);
+    response.render("index",{cache: false});
 });
+
 app.get('/users', function(request, response,next){
     userList.getUsers(response);
 });
