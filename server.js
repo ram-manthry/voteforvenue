@@ -3,7 +3,8 @@ var express = require('express'),
     engines = require('consolidate'),
     swig = require('swig'),
     mongoose = require('mongoose'),
-    eventController = require('./controllers/eventController');
+    eventController = require('./controllers/eventController'),
+    venueController = require('./controllers/venueController');
 
 var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
 var UserList = require('./controllers/userController.js');
@@ -27,6 +28,7 @@ app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
+
 app.get('/', function(request, response,next){
     response.render("index",{cache: false});
 });
@@ -34,9 +36,29 @@ app.get('/', function(request, response,next){
 app.get('/users', function(request, response,next){
     userList.getUsers(response);
 });
-app.get('/events', function(request, response,next){
+
+app.get('/api/events', function(request, response,next){
     eventController.getEvents(response);
 });
+app.post('/api/events/add', function(request, response,next){
+    eventController.addEvent(request.body);
+});
+app.delete('/api/events/:id', function (req, res){
+    eventController.removeEvent(req.params);
+});
+
+
+app.get('/api/venues', function(request, response,next){
+    venueController.getVenues(response);
+});
+app.post('/api/venues/add', function(request, response,next){
+    venueController.addVenue(request.body);
+});
+app.delete('/api/venues/:id', function (req, res){
+    venueController.removeVenue(req.params);
+});
+
+
 
 app.use(notFound);
 app.use(errorHandler);

@@ -1,10 +1,15 @@
 var mongoose = require('mongoose')
     , Schema = mongoose.Schema;
 
-var EventSchema = new Schema({
-    title      : String
-    ,eventDate : String
-    ,votingEndsOn : String
+var mongoose = require('mongoose')
+    , Schema = mongoose.Schema;
+
+var eventSchema = new Schema({
+    title: {type:String,required:true}
+    , eventDate: { type: Date,required:true }
+    , votingEndsOn: { type: Date, required:true }
 });
 
-module.exports = mongoose.model('events', EventSchema);
+var Event = mongoose.model('Event', eventSchema);
+
+module.exports = Event;
