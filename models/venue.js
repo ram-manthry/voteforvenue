@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var venueSchema = new Schema({
     name: {type:String,required:true}
     , location: String
-    , quantityOfVotes: int
+    , quantityOfVotes: String
     , eventId: {type:String,required:true}
 });
 
