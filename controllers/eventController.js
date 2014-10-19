@@ -10,6 +10,11 @@ function EventController(connection) {
     });
 }
 
+function redirectRoute(url){
+    console.log(url)
+    $location.path(url);
+}
+
 exports.getEvents= function(response) {
     Event.find(function(err, events) {
         if(err) {
@@ -36,7 +41,6 @@ exports.addEvent= function(eventJson) {
 };
 
 exports.removeEvent= function(params) {
-
     return Event.findById(params.id, function (err, event) {
         return event.remove(function (err) {
             if (err) {

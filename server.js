@@ -29,37 +29,52 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 
+<<<<<<< HEAD
 app.get('/', function(request, response,next){
     response.render("index",{cache: false});
 });
 app.get('/venue', function(request, response,next){
     response.render("venue",{cache: false});
 });
-
-app.get('/users', function(request, response,next){
-    userList.getUsers(response);
-});
-
-app.get('/api/events', function(request, response,next){
-    eventController.getEvents(response);
-});
-app.post('/api/events/add', function(request, response,next){
-    eventController.addEvent(request.body);
-});
-app.delete('/api/events/:id', function (req, res){
-    eventController.removeEvent(req.params);
-});
+=======
+/** UI routing **/
+    app.get('/', function(request, response,next){
+        response.render("index",{cache: false});
+    });
+    app.get('/venue', function(request, response,next){
+        response.render("venue",{cache: false});
+    });
+>>>>>>> mongo-venue
 
 
-app.get('/api/venues', function(request, response,next){
-    venueController.getVenues(response);
-});
-app.post('/api/venues/add', function(request, response,next){
-    venueController.addVenue(request.body);
-});
-app.delete('/api/venues/:id', function (req, res){
-    venueController.removeVenue(req.params);
-});
+/** API User routing **/
+    app.get('/api/users', function(request, response,next){
+        userList.getUsers(response);
+    });
+
+
+/** Events routing **/
+    app.get('/api/events', function(request, response,next){
+        eventController.getEvents(response);
+    });
+    app.post('/api/events/add', function(request, response,next){
+        eventController.addEvent(request.body);
+    });
+    app.delete('/api/events/:id', function (req, res){
+        eventController.removeEvent(req.params);
+    });
+
+
+/** Venue routing **/
+    app.get('/api/venues', function(request, response,next){
+        venueController.getVenues(response);
+    });
+    app.post('/api/venues/add', function(request, response,next){
+        venueController.addVenue(request.body);
+    });
+    app.delete('/api/venues/:id', function (req, res){
+        venueController.removeVenue(req.params);
+    });
 
 
 

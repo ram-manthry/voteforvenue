@@ -1,5 +1,5 @@
 body{
-    background-color: lightgoldenrodyellow;
+    /*background-color: lightgoldenrodyellow;*/
 }
 
 .eventOverview {
@@ -8,25 +8,60 @@ body{
 }
 
 
-.navbar .container {
-	margin-top: 10px;
+.navbar {	
+	min-height: 55px;
+}
+
+.navbar-default 
+{
+	border-color: none;
+}
+
+.eventTitle {
+	position: relative;
+	top: auto;
+	right: auto;
+	bottom: auto;
+	left: auto;
+	z-index: 100;
+	min-width: 150px;	
+	margin-top: 55px;
+}
+.eventTitle .panelDescription {
+	color: #fff;
+	min-height: 30px;
+	background-color: #dd4814;
+	-webkit-border-radius: 0 0 40px 40px ;
+	-moz-border-radius: 0 0 40px 40px;
+	border-radius: 0 0 40px 40px;
 }
 
 .navbar .navbar-brand img {
 	margin-top: -21px;
 }
+
 .bs-component 
 {	
 	position: relative;
 	display: inline-block;
-	min-height: 320px;
+	min-height: 280px;
 	min-width: 320px;
+}
+
+.bs-component .badge
+{
+	font-size: 16px;
+}
+
+.navbar-default {
+	background-color: #dd4814;
+	border-color: #bf3e11;
 }
 
 .bs-component .modal {
 	display: inline-block;
 	padding: 	15px;
-	min-height: 310px;
+	min-height: 260px;
 	min-width: 330px;
 	position: relative;
 	top: auto;
@@ -41,13 +76,12 @@ body{
 	-ms-transition: all 300ms;
 	transition: all 300ms;
 }
-
 .bs-component .modal:hover {
+	z-index: 5;
 	-webkit-transform: scale(1.04);
 	-moz-transform: scale(1.04);
     transform: scale(1.04);   		
 	-ms-transform: scale(1.04);
-
 }
 
 .bs-component .modal-sm
@@ -64,10 +98,10 @@ body{
     box-shadow: 0 0 15px #3D4DDB;
 }
 
-
 .bs-component .modal-content	
 {
 	border: 0px;
+	cursor: pointer;
 }
 
 .navbar-form {
