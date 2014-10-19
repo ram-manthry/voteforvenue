@@ -1,28 +1,34 @@
-angular.module('app', ['ngResource'], function ($interpolateProvider) {
-    $interpolateProvider.startSymbol('[{');
-    $interpolateProvider.endSymbol('}]');
-});
+var app =  angular.module('app', ['ngResource'], function ($interpolateProvider) 
+{
+        $interpolateProvider.startSymbol('[{');
+        $interpolateProvider.endSymbol('}]');
+    });
 
-angular.module('app').config(function($locationProvider){
+app.config(function($locationProvider){
     $locationProvider.html5Mode(true);
 });
 
-angular.module('app').controller('mainCtrl',function($scope,$http){
+app.controller('mainCtrl',function($scope,$http,$location){
 
 	var request = $http({
                         method: "get",
-                        url: "/events"
+                        url: "api/events"
                     });
  
     request.then( function(eventsPromise){$scope.events = eventsPromise.data; } ) ;
 
+    $scope.redirectRoute = function(url){        
+        window.location = url;
+    };
+
+
 });
 
-angular.module('app').controller('venueCtrl',function($scope,$http){
+app.controller('venueCtrl',function($scope,$http){
 
     var request = $http({
         method: "get",
-        url: "/venues"
+        url: "api/venues"
     });
 
     request.then( function(venuesPromise){$scope.venues = venuesPromise.data; console.log(venuesPromise.data);} ) ;
