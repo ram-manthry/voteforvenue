@@ -29,14 +29,14 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 
-<<<<<<< HEAD
+// HEAD
 app.get('/', function(request, response,next){
     response.render("index",{cache: false});
 });
 app.get('/venue', function(request, response,next){
     response.render("venue",{cache: false});
 });
-=======
+
 /** UI routing **/
     app.get('/', function(request, response,next){
         response.render("index",{cache: false});
@@ -44,7 +44,7 @@ app.get('/venue', function(request, response,next){
     app.get('/venue', function(request, response,next){
         response.render("venue",{cache: false});
     });
->>>>>>> mongo-venue
+
 
 
 /** API User routing **/
