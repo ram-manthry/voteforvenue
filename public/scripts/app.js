@@ -14,6 +14,17 @@ angular.module('app').controller('mainCtrl',function($scope,$http){
                         url: "/events"
                     });
  
-                    request.then( function(eventsPromise){$scope.events = eventsPromise.data; console.log(eventsPromise.data);} ) ;
+    request.then( function(eventsPromise){$scope.events = eventsPromise.data; } ) ;
+
+});
+
+angular.module('app').controller('venueCtrl',function($scope,$http){
+
+    var request = $http({
+        method: "get",
+        url: "/venues"
+    });
+
+    request.then( function(venuesPromise){$scope.venues = venuesPromise.data; console.log(venuesPromise.data);} ) ;
 
 });
