@@ -7,6 +7,7 @@
   
   <link rel="stylesheet" href="../styles/Vote-theme.css">
   <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/siteAngular.css">
 
 </head>
 
@@ -30,10 +31,10 @@
           <ul class="nav navbar-nav">
             <li>
               <form class="navbar-form navbar-left">
-                <input type="text" class="form-control btn-lg" placeholder="New Place">
+                <input type="text" class="form-control btn-lg" placeholder="Venue Name" ng-model="myVenue.name" required>
               </form>
               <form class="navbar-form navbar-left">
-                <input type="text" class="form-control" placeholder="Location">
+                <input type="text" class="form-control" placeholder="Location" ng-model="myVenue.location" required>
               </form>
             </li>
                           
@@ -41,7 +42,7 @@
               <form class="navbar-form navbar-left">
                 <button class="form-control">
                   <span class="glyphicon glyphicon-search"></span>
-                  <strong class="hidden-xs  hidden-sm hidden-md">Search</strong>
+                  <strong class="hidden-sm">Search</strong>
                 </button>
               </form>
             </li>
@@ -51,27 +52,32 @@
           <ul class="nav navbar-nav navbar-right">
             <li>
               <form class="navbar-form navbar-left" >  
-                <button type="submit" class="form-control btn-success " style="margin-right: 45px;">
-                  <span class="visible-lg visible-md">Create Venue</span>
-                  <span class="glyphicon glyphicon-plus-sign visible-xs visible-sm"></span>
+                <button ng-click="addVenue(myVenue)" class="form-control btn-success " style="margin-right: 45px;">
+                  <span class="glyphicon glyphicon-plus-sign"></span>
+                  <span class="hidden-sm">Create Venue</span>                  
                 </button>
               </form>
             </li>
           </ul>            
         </div>
-    </div>
+    </div> 
 
     <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt; </div>
     
-
     <div class="eventTitle">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 panelDescription">
-          <div class="btn btn-group-justified"><span style="font-size: 18px;">Event Description</span></div>
+          <div class="btn btn-group-justified"><span style="font-size: 18px;">Event: Fortnightly Lunch</span></div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
       </div>
+    </div>
+
+    <div class="container">
+      Name: <span ng-bind="myVenue.name"></span>
+      <br/>
+      obj [{myVenue.location}]
     </div>
     
 
