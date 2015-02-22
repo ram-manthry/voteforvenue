@@ -8,6 +8,7 @@ function createEventCtrl($scope, $http, $location, eventSvc, notificationSvc) {
 	$scope.addFriend = function eventCtrlAddFriend_fnc(f){		
 		$scope.eventObj.friends.push({order: $scope.eventObj.friends.length, value: f});
 		$scope.friend = null;
+
 	}
 
 	$scope.createEvent = function eventCtrlCreateEvent_fnc(eventObj) {
@@ -25,13 +26,13 @@ function createEventCtrl($scope, $http, $location, eventSvc, notificationSvc) {
                 , eventImage: eventObj.eventImage
 		    }
 		}).success( function(eventsPromise, status, headers, config) {
-		    displayNotification(eventsPromise.success, eventsPromise.message, eventsPromise.code);
+		    notificationSvc.displayNotification(eventsPromise.success, eventsPromise.message, eventsPromise.code);
 			$scope.eventObj = eventSvc.CreateNewEvent();
 			$scope.getEvents();
 		}).error(function(data, status, headers, config){
 		    console.log(data);
 		    console.log(status);
-		    notification.error("Error has occured creating the Venue");
+		    notificationSvc.displayNotification(false, "Error has occured creating the Venue", 500);
 		});
     };
 

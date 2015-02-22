@@ -12,12 +12,12 @@
             toaster.pop('warning', "", text);
         },
 
-        displayNotification : function notification_fnc(isSuccess, message, code) {        
+        displayNotification : function notification_fnc(isSuccess, message, code) {
             //else notification.warning("Http Code not supported.");
             if (isSuccess)
-                notification.success(message);
+                this.success(message);
             else
-                notification.error(message);
+                this.error(message);
         }
     };
 });

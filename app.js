@@ -19,7 +19,7 @@ var uri3 = "mongodb://localhost/voteforvenue";
 
 console.log();
 console.log('*******************************************************');
-mongoose.connect(uri3);
+mongoose.connect(uri);
 console.log('MongoDB Connection stablished!!');
 
 

@@ -131,14 +131,17 @@
                     <span class="col-lg-8 col-md-8 col-sm-9"><h2 class="modal-title">{{ev.title}}</h2></span>
                   </div>
                 </div>
-                <div class="modal-body">
-                  <ul class="list-group" >
-                    <li class="list-group-item"><strong>Date: </strong><span ng-bind="ev.eventDate"></span></li>
-                    <li class="list-group-item"><strong>Place: </strong><span>{{ev.votingEndsOn}}</span></li>
-                    <li class="list-group-item"><strong>Invited:</strong>&nbsp;&nbsp;
-                      <span ng-repeat="f in ev.friends">{{f.value}},&nbsp;</span>
-                    </li>
-                  </ul>
+                <div class="modal-body" style="overflow:auto; height:210px;">
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Date: </strong><span ng-bind="ev.eventDate"></span></li>
+                        <li class="list-group-item"><strong>Place: </strong><span>{{ev.votingEndsOn}}</span></li>
+                        <li class="list-group-item" style="overflow-wrap:break-word;">
+                            <strong>Invited:</strong>&nbsp;&nbsp;
+                            <span ng-repeat="f in ev.friends">
+                                {{f.value}}<br />
+                            </span>
+                        </li>
+                    </ul>
                 </div>
                 <!--<div class="modal-footer">                      
                    <button type="button" class="btn btn-success">
@@ -178,20 +181,20 @@
 
     <script type="text/javascript">
 
-      $(function(){
+        $(function () {
+            
+            $('#eventDateBtn').click(setDatePickerLocation);
+            $('#votingEndsOnBtn').click(setDatePickerLocation);
 
-          $('#eventDateBtn').click(setDatePickerLocation);
-          $('#votingEndsOnBtn').click(setDatePickerLocation);
+            function setDatePickerLocation(){
+                var width = $(window).width();
+                var height = $(window).height();
 
-          function setDatePickerLocation(){
-            var width = $(window).width();
-            var height = $(window).height();
-
-            //$('.dropdown-menu').css({'bottom':'250px', 'right':'250px', 'color': 'red'});
-            $('.dropdown-menu').css('top', height - 300 + 'px');
-            $('.dropdown-menu').css('left', width - 300 + 'px');
-          }
-      });
+                //$('.dropdown-menu').css({'bottom':'250px', 'right':'250px', 'color': 'red'});
+                $('.dropdown-menu').css('top', height - 300 + 'px');
+                $('.dropdown-menu').css('left', width - 300 + 'px');
+            }
+        });
 
     </script>
 </body>

@@ -1,5 +1,7 @@
 body {
 	/*background-color: lightgoldenrodyellow;*/
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .eventOverview {
@@ -62,6 +64,8 @@ body {
 /******
 ** Badge Modal
 */
+
+
 .bs-component .modal {
 	width: 100%;
 	display: inline-block;
@@ -167,4 +171,51 @@ body {
 }
 .modal {
     z-index: 1035;
+}
+
+
+/* For the "inset" look only */
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 10px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgb(224, 224, 224); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgb(224, 224, 224); 
+}
+scrollbar {
+/*  clear useragent default style*/
+   -moz-appearance: none !important;
+}
+/* buttons at two ends */
+scrollbarbutton {
+   -moz-appearance: none !important;
+}
+/* the sliding part*/
+thumb{
+   -moz-appearance: none !important;
+}
+scrollcorner {
+   -moz-appearance: none !important;
+   resize:both;
+}
+/* vertical or horizontal */
+scrollbar[orient="vertical"] {
+    color:silver;
 }
