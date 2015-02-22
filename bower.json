@@ -1,33 +1,38 @@
 {
-    "name": "voteforvenue",
-    "version": "0.0.0",
-    "homepage": "https://github.com/ram-manthry/voteforvenue",
-    "authors": [
-    "ram-manthry <ram.manthry@gmail.com>"
-    ],
-    "description": "App for voting for a venue",
-    "moduleType": [
+  "name": "venueApp",
+  "version": "1.0.0",
+  "authors": [
+    "Ewerton Silveira <ewertonsilveira@live.com>"
+  ],
+  "description": "App for voting for a venue",
+  "moduleType": [
     "node"
-    ],
-    "keywords": [
+  ],
+  "keywords": [
     "vote",
     "venue",
+    "event",
+    "voting",
+    "lunch",
+    "vote",
     "restaurant",
     "event"
-    ],
-    "license": "MIT",
-    "ignore": [
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ewertonsilveira/LunchVoting",
+  "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-    ],
-    "dependencies": {
-        "jquery": "~2.1.1",
-        "toastr": "~2.0.3",
-        "angular": "~1.2.25",
-        "angular-resource": "~1.2.25",
-        "angular-route": "~1.2.25"
-    }
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.12.1",
+    "angular-resource": "~1.3.13",
+    "angular-route": "~1.3.13",
+    "angularjs-toaster": "~0.4.10",
+    "bootstrap": "~3.3.2",
+    "jquery": "~2.1.3"
+  }
 }

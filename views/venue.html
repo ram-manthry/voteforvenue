@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote For Venue</title>
+  
+  <link rel="stylesheet" href="../styles/Vote-theme.css">
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/siteAngular.css">
+
+</head>
+
+<body ng-cloak ng-controller="venueCtrl">
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="glyphicon glyphicon-chevron-down"></span>              
+          </button>
+
+          <a href="#"><img src="../images/venueBlue48.png"></a> 
+          
+          <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;
+          </a>
+
+        </div>
+
+        <div class="navbar-collapse collapse navbar-responsive-collapse">   
+
+          <ul class="nav navbar-nav">
+            <li>
+              <form class="navbar-form navbar-left">
+                <input type="text" class="form-control btn-lg" placeholder="Venue Name" ng-model="myVenue.name" required>
+              </form>
+              <form class="navbar-form navbar-left">
+                <input type="text" class="form-control" placeholder="Location" ng-model="myVenue.location" required>
+              </form>
+            </li>
+                          
+            <li>
+              <form class="navbar-form navbar-left">
+                <button class="form-control">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <strong class="hidden-sm">Search</strong>
+                </button>
+              </form>
+            </li>
+
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <form class="navbar-form navbar-left" >  
+                <button ng-click="addVenue(myVenue)" class="form-control btn-success " style="margin-right: 45px;">
+                  <span class="glyphicon glyphicon-plus-sign"></span>
+                  <span class="hidden-sm">Create Venue</span>                  
+                </button>
+              </form>
+            </li>
+          </ul>            
+        </div>
+    </div> 
+
+    <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt; </div>
+    
+    <div class="eventTitle">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 panelDescription">
+          <div class="btn btn-group-justified"><span style="font-size: 18px;">Event: Fortnightly Lunch</span></div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      Name: <span ng-bind="myVenue.name"></span>
+      <br/>
+      obj [{myVenue.location}]
+    </div>
+    
+
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-11" ng-repeat="venue in venues">
+          <div class="bs-component">
+            <div class="modal">
+              <div class="modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="row modal-title">
+                      <span class="col-lg-4 col-md-4 col-sm-3 hidden-xs"><img src="../images/venueSeo64.png"></a></span>
+                      <span class="col-lg-8 col-md-8 col-sm-9"><h2 class="modal-title">[{venue.name}]</h2></span>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 pull-left">
+                        <strong>Location: </strong><span ng-bind="venue.location"></span>
+                      </div>    
+                    </div>
+
+                    <div class="row">&nbsp;</div>
+                  
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6">
+                        <div class="btn btn-primary pull-left">
+                          <span class="badge">10</span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6">
+                        <span type="button" class="btn btn-success pull-right">
+                          <span class="glyphicon glyphicon-thumbs-up"></span>
+                          Vote
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>            
+            </div>   
+          </div>
+        </div>
+    </div>    
+    
+    <hr/>   
+
+    <div class="container">
+      <p>@@VoteForVenue</p>
+      <p>Text placeholders courtesy of <a href="./">Vote For Venue</a>.</p>
+
+    </div>
+
+  <script src="/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/scripts/bootstrap.min.js"></script>
+  <script src="/vendor/angular/angular.js"></script>
+  <script src="/vendor/angular-resource/angular-resource.js"></script>
+  <script src="/scripts/app.js"></script> 
+
+</body>
+</html>
