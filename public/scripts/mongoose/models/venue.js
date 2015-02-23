@@ -4,7 +4,11 @@ var mongoose = require('mongoose')
 var venueSchema = new Schema({
     name: {type:String,required:true}
     , location: String
+<<<<<<< HEAD:public/scripts/mongoose/models/venue.js
     , quantityOfVotes: Number
+=======
+    , quantityOfVotes: String
+>>>>>>> origin/master:models/venue.js
     , eventId: {type:String,required:true}
 });
 
