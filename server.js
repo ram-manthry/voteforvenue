@@ -1,83 +1,93 @@
-var express = require('express'),
-    logger = require('morgan'),
-    engines = require('consolidate'),
-    swig = require('swig'),
-    mongoose = require('mongoose'),
-    eventController = require('./controllers/eventController'),
-    venueController = require('./controllers/venueController');
+#!/usr/bin/env node
 
-var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
-var UserList = require('./controllers/userController.js');
-var userList = new UserList(uri);
+/**
+ * Module dependencies.
+ */
 
-// ### Middleware to handle 404
-var notFound = function(req,res,next){
-    res.statusCode = 404;
-    res.description = 'Not found';
-    res.render('404',{cache: false});
-};
-// ### Middleware to internal server errors
-var errorHandler = function(err,req,res,next){
-    res.render('error',{cache: false,description:'Please check the URL.'});
-};
+var app = require('app');
+var debug = require('debug')('venueApp:server');
+var http = require('http');
 
-var app = express();
-app.engine('html', engines.swig);
-app.set('views','./views');
-app.set('view engine', 'html');
+/**
+ * Get port from environment and store in Express.
+ */
+var port = normalizePort(process.env.PORT || '8333');
+app.set('port', port);
 
-app.use(logger('dev'));
-app.use(express.static(__dirname + '/public'));
+console.log();
+console.log('*****************************************************');
+console.log('App running on port ' + port);
 
+/**
+ * Create HTTP server.
+ */
 
-/** UI routing **/
-    app.get('/', function(request, response,next){
-        response.render("index",{cache: false});
-    });
-    app.get('/venue', function(request, response,next){
-        response.render("venue",{cache: false});
-    });
+var server = http.createServer(app);
 
+/**
+ * Listen on provided port, on all network interfaces.
+ */
 
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 
-/** API User routing **/
-    app.get('/api/users', function(request, response,next){
-        userList.getUsers(response);
-    });
+/**
+ * Normalize a port into a number, string, or false.
+ */
 
+function normalizePort(val) {
+  var port = parseInt(val, 10);
 
-/** Events routing **/
-    app.get('/api/events', function(request, response,next){
-        eventController.getEvents(response);
-    });
-    app.post('/api/events/add', function(request, response,next){
-        eventController.addEvent(request.body);
-    });
-    app.delete('/api/events/:id', function (req, res){
-        eventController.removeEvent(req.params);
-    });
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
 
+  if (port >= 0) {
+    // port number
+    return port;
+  }
 
-/** Venue routing **/
-    app.get('/api/venues', function(request, response,next){
-        venueController.getVenues(response);
-    });
-    app.post('/api/venues/add', function(request, response,next){
-        venueController.addVenue(request.body);
-    });
-    app.delete('/api/venues/:id', function (req, res){
-        venueController.removeVenue(req.params);
-    });
+  return false;
+}
 
+/**
+ * Event listener for HTTP server "error" event.
+ */
 
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
 
-app.use(notFound);
-app.use(errorHandler);
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port
 
-// ### Start Express
-var start = function(port){
-    return app.listen(port, function() {
-        console.log('Express server listening on port %d in %s mode', port, app.settings.env);
-    });
-};
-var server = start(process.env.PORT || 3000);
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
