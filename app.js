@@ -6,45 +6,54 @@ var ejs = require('ejs');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var evt = require('./routes/event');
-var venue = require('./routes/venue');
+var routes = require('./routes/baseRouting');
+var api = require('./routes/webApi');
 
+/*
+ * Application
+ **/
 var app = express();
 
 var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
-var uri2 = "mongodb://ewerton:ailn3003@ds041561.mongolab.com:41561/standupmeeting";
 var uri3 = "mongodb://localhost/voteforvenue";
 
 console.log();
 console.log('*******************************************************');
-mongoose.connect(uri);
+mongoose.connect(uri3);
 console.log('MongoDB Connection stablished!!');
 
 
-app.engine('html', ejs.renderFile);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.engine('html', ejs.renderFile);
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'html');
 
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+// uncomment after placing your favicon in /app
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/event', evt);
-app.use('/venue', venue);
-
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'app')));
+app.use(favicon(__dirname + '/app/favicon.ico'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
+app.use('/js', express.static(__dirname + '/app/scripts'));
+app.use('/css', express.static(__dirname + '/app/styles'));
+app.use('/img', express.static(__dirname + '/app/images'));
+app.use('/fonts', express.static(__dirname + '/app/fonts'));
+app.use('/partial', express.static(__dirname + '/app/views/partial'));
+app.use('/views', express.static(__dirname + '/app/views'));
 
+
+//app.use('/', routes);
+app.use('/api', api);
+
+app.all('/*', function (req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.sendFile('/app/views/index.html', { root: __dirname });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

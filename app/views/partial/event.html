@@ -1,0 +1,173 @@
+﻿
+<div>
+
+    <!-- Modal -->
+    <div class="modal" id="friends" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input id="modalInput" type="text" ng-focus class="form-control" placeholder="Email" ng-model="friend" ng-keyup="keyUpEvent($event, 13, addFriend, friend)">
+                        <span class="input-group-btn">
+                            <button type="button" id="modalBtn" class="btn btn-primary" ng-click="addFriend(friend)">Add</button>
+                        </span>
+                    </div>
+                    <hr>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="f in eventObj.friends">{{f.value}}</li>
+                    </ul>
+                    <hr>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="subNavbar" class="navbar navbar-default navbar-fixed-top">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+
+            <a href="#"><img src="/img/venueGreen48.png"></a>
+
+            <a class="navbar-brand" href="#">
+                <a class="btn btn-primary hidden-sm hidden-md"><strong>Vote For Venue</strong></a>
+            </a>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+
+            <ul class="nav navbar-nav">
+                <li>
+                    <form class="navbar-form navbar-left">
+                        <input type="text" ng-model="eventObj.title" class="form-control btn-lg" placeholder="My Venue's name">
+                    </form>
+                </li>
+
+                <li>
+                    <form class="navbar-form navbar-left">
+                        <input ng-bind="eventObj.eventImage" type="hidden"></input>
+                        <button class="form-control">
+                            <span class="glyphicon glyphicon-picture"></span>
+                            <strong class="hidden-lg hidden-md hidden-sm">Upload Image</strong>
+                        </button>
+                    </form>
+                </li>
+
+                <li>
+                    <form class="navbar-form navbar-left">
+                        <button id="eventDateBtn" type="button" class="form-control" ng-click="openEventDate($event)">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <strong class="hidden-sm">{{ eventObj.eventDate | date:'dd-MM-yyyy' }}</strong>
+                        </button>
+                        <input type="hidden" class="form-control" datepicker-popup="{{format}}" ng-model="eventObj.eventDate" is-open="openedEventDate" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"></input>
+                    </form>
+                </li>
+
+                <li>
+                    <form class="navbar-form navbar-left">
+                        <button id="votingEndsOnBtn" type="button" class="form-control" ng-click="openVotingEndsOn($event, eventObj.votingEndsOn)">
+                            <span class="glyphicon glyphicon-time"></span>
+                            <strong class="hidden-sm">{{ eventObj.votingEndsOn | date:'dd-MM-yyyy' }}</strong>
+                        </button>
+                        <input type="hidden" class="form-control" datepicker-popup="{{format}}" ng-model="eventObj.votingEndsOn" is-open="openedVotingEndsOn" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"></input>
+                    </form>
+                </li>
+
+                <li>
+                    <form class="navbar-form">
+                        <input ng-bind="friends" type="hidden"></input>
+                        <button id="friendsBtn" type="button" class="form-control" data-toggle="modal" data-target="#friends">
+                            <img src="/img/venueInv32.png" />
+                            <strong class="hidden-md hidden-sm">Invite friends</strong>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form navbar-left">
+                        <button type="submit" ng-click="createEvent(eventObj)" class="form-control btn-success" style="margin-right: 45px;">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                            <span class="hidden-sm">Create Event</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+        
+    <div class="eventTitle">
+        <div class="row">
+        </div>
+    </div>
+
+    <div id="subBody" class="disabled">
+
+        <div class="row">
+            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-repeat="ev in events">
+                <div class="bs-component">
+                    <div class="modal">
+                        <div class="modal-sm">
+                            <div class="modal-content" ui-sref="place({ id: ev._id, name: ev.title})">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <div class="row modal-title">
+                                        <span class="col-lg-3 col-md-3 col-sm-3 hidden-xs"><img src="/img/venueBlue64.png"></img></span>
+                                        <span class="col-lg-9 col-md-9 col-sm-9"><h2 class="modal-title">{{ev.title}}</h2></span>
+                                    </div>
+                                </div>
+                                <div class="modal-body" style="overflow:auto; height:210px;">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Date: </strong><span ng-bind="ev.eventDate"></span></li>
+                                        <li class="list-group-item"><strong>Place: </strong><span>{{ev.votingEndsOn}}</span></li>
+                                        <li class="list-group-item" style="overflow-wrap:break-word;">
+                                            <strong>Invited:</strong>&nbsp;&nbsp;
+                                            <span ng-repeat="f in ev.friends">
+                                                {{f.value}}<br />
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        var subBody = $('#subBody');
+        subBody.fadeIn(1500);
+
+        $('.modal').focus(function (e) {
+            $('#modalInput').focus();
+        });
+
+        $('#eventDateBtn').click(setDatePickerLocation);
+        $('#votingEndsOnBtn').click(setDatePickerLocation);
+
+        function setDatePickerLocation() {
+            var dtPicker = $(this).parent().find('.dropdown-menu');
+            var width = $(window).width();
+            var height = $(window).height();
+
+            dtPicker.focus();
+            dtPicker.css({ 'top': height - 300 + 'px', 'left': width - 300 + 'px' });
+
+        }
+    });
+
+</script>

@@ -34,5 +34,8 @@
     "angularjs-toaster": "~0.4.10",
     "bootstrap": "~3.3.2",
     "jquery": "~2.1.3"
+  },
+  "resolutions": {
+    "angular": "1.3.14"
   }
 }
