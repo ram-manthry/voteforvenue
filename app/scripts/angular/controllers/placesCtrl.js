@@ -3,17 +3,16 @@
     angular.module('app.venue').controller('placesCtrl', ['$scope', '$stateParams', '$timeout', 'placesSvc', 'voteSvc', 'notificationSvc', 'keyEventsSvc', placesCtrl]);
     
     function placesCtrl($scope, params, $timeout, placesSvc, voteSvc, notificationSvc, keyEventsSvc) {
-        var vm       = this;
-        vm.placeObj  = placesSvc.getPlaceInstance();
-        vm.places    = [];
-        vm.eventId   = params.id;
-        vm.eventName = params.name;
-        vm.name      = null;
-        vm.getPlaces = getPlaces;
-        vm.addPlace  = addPlace;
-        vm.vote      = voteForPlace
-
-        $scope.placesViewModel = vm;
+        var vm           = this;
+        vm.placeObj      = placesSvc.getPlaceInstance();
+        vm.places        = [];
+        vm.eventId       = params.id;
+        vm.eventName     = params.name;
+        vm.name          = null;
+        vm.getPlaces     = getPlaces;
+        vm.addPlace      = addPlace;
+        vm.vote          = voteForPlace;
+        vm.disabledVotes = false;
 
         vm.getPlaces();
                 
@@ -59,12 +58,17 @@
 
         function voteForPlace(place) {
             //console.log(place);
+            if (vm.disabledVotes) {
+                notificationSvc.warning('Your already voted ;) ');
+                return;
+            }
             if (place && place.eventId) {
                 var data = { eventId: place.eventId, placeId: place._id };
                 voteSvc.voteFor(data, function getPlaces_callback(result) {
                     if (result.success) {
                         setVotesForSpecificPlace(place._id);
                         place.disabled = true;
+                        vm.disabledVotes = true;
                     } else {
                         notificationSvc.displayNotification(false, "Your vote was not computed.", 500);
                     }

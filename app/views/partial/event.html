@@ -7,14 +7,14 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="input-group">
-                        <input id="modalInput" type="text" ng-focus class="form-control" placeholder="Email" ng-model="friend" ng-keyup="keyUpEvent($event, 13, addFriend, friend)">
+                        <input id="modalInput" type="text" ng-focus class="form-control" placeholder="Email" ng-model="evtCtrl.friend" ng-keyup="evtCtrl.keyUpEvent($event, 13, evtCtrl.addFriend, evtCtrl.friend)">
                         <span class="input-group-btn">
-                            <button type="button" id="modalBtn" class="btn btn-primary" ng-click="addFriend(friend)">Add</button>
+                            <button type="button" id="modalBtn" class="btn btn-primary" ng-click="evtCtrl.addFriend(evtCtrl.friend)">Add</button>
                         </span>
                     </div>
                     <hr>
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="f in eventObj.friends">{{f.value}}</li>
+                        <li class="list-group-item" ng-repeat="f in evtCtrl.eventObj.friends">{{f.value}}</li>
                     </ul>
                     <hr>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -43,7 +43,7 @@
             <ul class="nav navbar-nav">
                 <li>
                     <form class="navbar-form navbar-left">
-                        <input type="text" ng-model="eventObj.title" class="form-control btn-lg" placeholder="My Venue's name">
+                        <input type="text" ng-model="evtCtrl.eventObj.title" class="form-control btn-lg" placeholder="My Venue's name">
                     </form>
                 </li>
 
@@ -59,27 +59,27 @@
 
                 <li>
                     <form class="navbar-form navbar-left">
-                        <button id="eventDateBtn" type="button" class="form-control" ng-click="openEventDate($event)">
+                        <button id="eventDateBtn" type="button" class="form-control" ng-click="evtCtrl.openEventDate($event)">
                             <span class="glyphicon glyphicon-calendar"></span>
-                            <strong class="hidden-sm">{{ eventObj.eventDate | date:'dd-MM-yyyy' }}</strong>
+                            <strong class="hidden-sm">{{ evtCtrl.eventObj.eventDate | date:'dd-MM-yyyy' }}</strong>
                         </button>
-                        <input type="hidden" class="form-control" datepicker-popup="{{format}}" ng-model="eventObj.eventDate" is-open="openedEventDate" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"></input>
+                        <input type="hidden" class="form-control" datepicker-popup="{{evtCtrl.format}}" ng-model="evtCtrl.eventObj.eventDate" is-open="evtCtrl.openedEventDate" min-date="evtCtrl.minDate" datepicker-options="evtCtrl.dateOptions" ng-required="true" close-text="Close"></input>
                     </form>
                 </li>
 
                 <li>
                     <form class="navbar-form navbar-left">
-                        <button id="votingEndsOnBtn" type="button" class="form-control" ng-click="openVotingEndsOn($event, eventObj.votingEndsOn)">
+                        <button id="votingEndsOnBtn" type="button" class="form-control" ng-click="evtCtrl.openVotingEndsOn($event)">
                             <span class="glyphicon glyphicon-time"></span>
-                            <strong class="hidden-sm">{{ eventObj.votingEndsOn | date:'dd-MM-yyyy' }}</strong>
+                            <strong class="hidden-sm">{{ evtCtrl.eventObj.votingEndsOn | date:'dd-MM-yyyy' }}</strong>
                         </button>
-                        <input type="hidden" class="form-control" datepicker-popup="{{format}}" ng-model="eventObj.votingEndsOn" is-open="openedVotingEndsOn" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close"></input>
+                        <input type="hidden" class="form-control" datepicker-popup="{{evtCtrl.format}}" ng-model="evtCtrl.eventObj.votingEndsOn" is-open="evtCtrl.openedVotingEndsOn" min-date="evtCtrl.minDate" datepicker-options="evtCtrl.dateOptions" ng-required="true" close-text="Close"></input>
                     </form>
                 </li>
 
                 <li>
                     <form class="navbar-form">
-                        <input ng-bind="friends" type="hidden"></input>
+                        <input ng-bind="evtCtrl.friends" type="hidden"></input>
                         <button id="friendsBtn" type="button" class="form-control" data-toggle="modal" data-target="#friends">
                             <img src="/img/venueInv32.png" />
                             <strong class="hidden-md hidden-sm">Invite friends</strong>
@@ -91,7 +91,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <form class="navbar-form navbar-left">
-                        <button type="submit" ng-click="createEvent(eventObj)" class="form-control btn-success" style="margin-right: 45px;">
+                        <button type="submit" ng-click="evtCtrl.createEvent(evtCtrl.eventObj)" class="form-control btn-success" style="margin-right: 45px;">
                             <span class="glyphicon glyphicon-plus-sign"></span>
                             <span class="hidden-sm">Create Event</span>
                         </button>
@@ -110,7 +110,7 @@
     <div id="subBody" class="disabled">
 
         <div class="row">
-            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-repeat="ev in events">
+            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-repeat="ev in evtCtrl.events">
                 <div class="bs-component">
                     <div class="modal">
                         <div class="modal-sm">

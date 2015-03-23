@@ -3,26 +3,29 @@
 
     angular.module('app.venue').controller('eventCtrl', eventCtrl);
 
-    function eventCtrl($scope, $http, $location, eventSvc, notificationSvc, keyEventsSvc) {
-        $scope.events = [];
-        $scope.friend = null;
-        $scope.format = 'dd-MMMM-yyyy';        
-        $scope.eventObj = eventSvc.getEventInstance();
-        $scope.minDate = $scope.minDate ? null : new Date();        
-        $scope.dateOptions = { formatYear: 'yyyy', formatMonth: 'MMMM', startingDay: 0, top: '100px' };
+    eventCtrl.$inject = ['$scope', '$http', '$location', 'eventSvc', 'notificationSvc', 'keyEventsSvc'];
 
-        $scope.addFriend = addFriend;
-        $scope.createEvent = createEvent;
-        $scope.getEvents = getEvents;
-        $scope.keyUpEvent = keyEventsSvc.keyUpEvent;
-        $scope.openEventDate = openEventDate;
-        $scope.openVotingEndsOn = openVotingEndsOn;
+    function eventCtrl(sc, $http, $location, eventSvc, notificationSvc, keyEventsSvc) {
+        var vm              = this;
+        vm.events           = [];
+        vm.friend           = null;
+        vm.format           = 'dd-MMMM-yyyy';        
+        vm.eventObj         = eventSvc.getEventInstance();
+        vm.minDate          = vm.minDate ? null : new Date();
+        
+        vm.addFriend        = addFriend;
+        vm.getEvents        = getEvents;
+        vm.createEvent      = createEvent;
+        vm.openEventDate    = openEventDate;
+        vm.openVotingEndsOn = openVotingEndsOn;
+        vm.keyUpEvent       = keyEventsSvc.keyUpEvent;
+        vm.dateOptions      = { formatYear: 'yyyy', formatMonth: 'MMMM', startingDay: 0, top: '100px' };
 
-        $scope.getEvents();
+        vm.getEvents();
         
         function getEvents() {
             eventSvc.getEvents(function getEvents_callback(events) {
-                    $scope.events = events;
+                vm.events = events;
                 });
         }
 
@@ -42,8 +45,8 @@
 
             eventSvc.createEvent(data, function createEvent_callback(events) {
                     notificationSvc.displayNotification(events.success, events.message, events.code);
-                    $scope.eventObj = eventSvc.getEventInstance();
-                    $scope.getEvents();
+                    vm.eventObj = eventSvc.getEventInstance();
+                    vm.getEvents();
             }, function createEvent_errorCallback(errorObj) {
                     console.log(errorObj);
                     notificationSvc.displayNotification(false, "Error has occured creating the Venue", 500);
@@ -53,20 +56,20 @@
         };
                 
         function addFriend(f) {
-            $scope.eventObj.friends.push({ order: $scope.eventObj.friends.length, value: f });
-            $scope.friend = null;
+            vm.eventObj.friends.push({ order: vm.eventObj.friends.length, value: f });
+            vm.friend = null;
         };
 
         function openEventDate($event) {
-            $scope.openedVotingEndsOn = false;
-            $scope.openedEventDate = true;
+            vm.openedVotingEndsOn = false;
+            vm.openedEventDate = true;
             $event.preventDefault();
             $event.stopPropagation();
         };
 
         function openVotingEndsOn($event) {
-            $scope.openedEventDate = false;
-            $scope.openedVotingEndsOn = true;
+            vm.openedEventDate = false;
+            vm.openedVotingEndsOn = true;
             $event.preventDefault();
             $event.stopPropagation();
         };

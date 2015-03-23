@@ -6,20 +6,20 @@
         $locationProvider.html5Mode(true);
 
         $urlRouterProvider.otherwise('index');
-        
+
         $stateProvider
             .state('place', {
                 cache: false,
                 url: '/place/:id?name',
                 templateUrl: 'partial/place.html',
-                controller: 'placesCtrl'
+                controller: 'placesCtrl as plcCtrl'
             })
             .state('index', {
                 cache: false,
                 url: '/index',
                 templateUrl: 'partial/event.html',
-                controller: 'eventCtrl',
-            })
+                controller: 'eventCtrl as evtCtrl',
+            });
     };
 
     //angular.module('app.venue').config(['$routeProvider', routeCfg]);

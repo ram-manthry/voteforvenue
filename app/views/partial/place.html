@@ -1,8 +1,6 @@
 ﻿
 <div>
-
     <div>
-
         <div id="subNavbar" class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -22,13 +20,13 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <form class="navbar-form navbar-left">
-                            <input type="text" class="form-control" placeholder="Venue Name" ng-model="placesViewModel.placeObj.name" required>
+                            <input type="text" class="form-control" placeholder="Venue Name" ng-model="plcCtrl.placeObj.name" required>
                         </form>
                         <form class="navbar-form navbar-left">
-                            <input type="text" class="form-control" placeholder="Location" ng-model="placesViewModel.placeObj.location" required>
+                            <input type="text" class="form-control" placeholder="Location" ng-model="plcCtrl.placeObj.location" required>
                         </form>
                         <form class="navbar-form navbar-left">
-                            <input type="text" class="form-control" placeholder="Map url" ng-model="placesViewModel.placeObj.mapUrl" required>
+                            <input type="text" class="form-control" placeholder="Map url" ng-model="plcCtrl.placeObj.mapUrl" required>
                         </form>
                     </li>
 
@@ -46,7 +44,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <form class="navbar-form navbar-left">
-                            <button ng-click="placesViewModel.addPlace(placesViewModel.placeObj)" class="form-control btn-success" style="margin-right: 45px;">
+                            <button ng-click="plcCtrl.addPlace(plcCtrl.placeObj)" class="form-control btn-success" style="margin-right: 45px;">
                                 <span class="glyphicon glyphicon-plus-sign"></span>
                                 <span class="hidden-sm">Create Venue</span>
                             </button>
@@ -65,7 +63,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 panelDescription">
                         <div class="btn btn-group-justified" ui-sref="index">
-                            <span style="font-size: 18px; font-weight:700;">{{placesViewModel.eventName}}</span>
+                            <span style="font-size: 18px; font-weight:700;">{{plcCtrl.eventName}}</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1"></div>
@@ -73,7 +71,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-11" ng-repeat="place in placesViewModel.places">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-11" ng-repeat="place in plcCtrl.places">
                     <div class="bs-component">
                         <div class="modal">
                             <div class="modal-sm">
@@ -108,7 +106,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6">
-                                                <span type="button" class="btn btn-success pull-right" ng-click="placesViewModel.vote(place)" ng-hide="place.disabled">
+                                                <span type="button" class="btn btn-success pull-right" ng-click="plcCtrl.vote(place)" ng-hide="place.disabled">
                                                     <span class="glyphicon glyphicon-thumbs-up"></span>
                                                     Vote
                                                 </span>
