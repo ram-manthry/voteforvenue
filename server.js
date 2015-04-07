@@ -1,12 +1,9 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
-
-var app = require('app');
 var debug = require('debug')('venueApp:server');
 var http = require('http');
+var app = require(__dirname + '/app.js');
 
 /**
  * Get port from environment and store in Express.

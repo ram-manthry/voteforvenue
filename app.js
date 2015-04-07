@@ -17,11 +17,10 @@ var MongoStore = require('connect-mongo')(session);
 var app = express();
 
 var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
-var uri3 = "mongodb://localhost/voteforvenue";
 
 console.log();
 console.log('*******************************************************');
-mongoose.connect(uri3);
+mongoose.connect(uri);
 console.log('MongoDB Connection Established!!');
 
 var hour = 360000000;
