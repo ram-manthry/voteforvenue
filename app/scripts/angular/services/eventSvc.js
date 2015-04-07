@@ -13,19 +13,19 @@
 
 		function getEvents(callback, errorCallback) {
 			$http({ method: "get", url: "/api/events" })
-				.then(function success_fnc(result) {
-					callback(result.data.events);
+				.then(function success_fnc(res) {
+				    callback(res.data.result);
 				})
-				.catch(function error_fnc(result, status) {
-					errorCallback({ data: result || "Request failed", status: status });
+				.catch(function error_fnc(res, status) {
+				    errorCallback({ data: res || "Request failed", status: status });
 				});
 		};
 
 		function createEvent(eventObj, callback, errorCallback) {
 			console.log(eventObj);
 			$http({ method: "post", url: "/api/events/add", data: eventObj })
-				.then(function success_fnc(result) {
-					callback(result.data);
+				.then(function success_fnc(res) {
+				    callback(res.data);
 				}).catch(function error_fnc(result, status, headers, config) {
 					errorCallback({ data: result || "Request failed", status: status });
 				});

@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var routes = require('./routes/baseRouting');
 var api = require('./routes/webApi');
+var session = require('express-session')
+var MongoStore = require('connect-mongo')(session);
 
 /*
  * Application
@@ -20,9 +22,20 @@ var uri3 = "mongodb://localhost/voteforvenue";
 console.log();
 console.log('*******************************************************');
 mongoose.connect(uri3);
-console.log('MongoDB Connection stablished!!');
+console.log('MongoDB Connection Established!!');
 
-
+var hour = 360000000;
+var expireDate = new Date(Date.now() + hour);
+app.use(session({
+    name:"vntevnt",
+    secret: '5513dcd210ebd4e821a9b4a3',
+    proxy: true,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: hour },
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+//console.log(expireDate);
 
 // view engine setup
 app.engine('html', ejs.renderFile);

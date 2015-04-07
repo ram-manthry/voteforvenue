@@ -18,8 +18,8 @@
                 
         function getPlaces() {
             if (vm.eventId) {
-                placesSvc.getPlaces(vm.eventId, function getPlaces_callback(result) {
-                    vm.places = result.places;
+                placesSvc.getPlaces(vm.eventId, function getPlaces_callback(data) {
+                    vm.places = data.result;
                 }, errorCallback);
             
                 $timeout(function getPlaces_timeout() {                
@@ -48,9 +48,9 @@
             
         };
 
-        function getPlaceVotes(result) {
-            if (result.votes && result.votes.length > 0) {               
-                result.votes.forEach(function (v, j, list) {
+        function getPlaceVotes(dt) {
+            if (dt.result && dt.result.length > 0) {
+                dt.result.forEach(function (v, j, list) {
                     setVotesForSpecificPlace(list[j].placeId);
                 });
             };
@@ -64,11 +64,13 @@
             }
             if (place && place.eventId) {
                 var data = { eventId: place.eventId, placeId: place._id };
-                voteSvc.voteFor(data, function getPlaces_callback(result) {
+                voteSvc.voteFor(data, function voteFor_callback(result) {
                     if (result.success) {
                         setVotesForSpecificPlace(place._id);
                         place.disabled = true;
                         vm.disabledVotes = true;
+                    } else if (result.code === 304) {
+                        notificationSvc.warning(result.message);
                     } else {
                         notificationSvc.displayNotification(false, "Your vote was not computed.", 500);
                     }

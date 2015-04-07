@@ -4,7 +4,7 @@
             toaster.success("", text);
         },
         error: function notificationError_fnc (text) {
-            toaster.error("Error", text);
+            toaster.error("", text);
         },
         warning: function notificationWarnig_fnc (text) {
             toaster.pop('warning', "", text);

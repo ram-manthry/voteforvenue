@@ -24,9 +24,9 @@
         vm.getEvents();
         
         function getEvents() {
-            eventSvc.getEvents(function getEvents_callback(events) {
-                vm.events = events;
-                });
+            eventSvc.getEvents(function getEvents_callback(data) {
+                vm.events = data;
+            });
         }
 
         function createEvent(eventObj) {

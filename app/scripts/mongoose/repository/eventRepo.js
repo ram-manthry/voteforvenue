@@ -5,11 +5,15 @@ var GenericResponse = require('../../common/sharedFunc');
 exports.getEvents = function (req, res) {
     var genericResponse = new GenericResponse();
     Event.find(function(err, result) {        
-        if(err) {
-            res.send(genericResponse.errorResult);
-        }
-        genericResponse.successResult.events = result;
-        res.send(genericResponse.successResult);
+        if (err) {
+            genericResponse.Result = genericResponse.errorResult;
+            genericResponse.Result.code = genericResponse.errorResult.code;
+        } else {
+            genericResponse.successResult.result = result;
+            genericResponse.Result = genericResponse.successResult;
+        };
+
+        res.send(genericResponse.Result);
     });
 };
 
@@ -22,12 +26,17 @@ exports.addEvent = function (req, res) {
         , friends: req.body.friends
         , eventImage: req.body.eventImage
     });
-    event.save(function(err, event) {
+
+    event.save(function (err, result) {
         if (err) {
-            genericResponse.errorResult.message = 'Sorry, there was an error saving the Venue Event. Error: ' + err;
-            res.send(genericResponse.errorResult);
-        } else 
-            res.send(genericResponse.successResult);
+            genericResponse.Result.code = genericResponse.errorResult.code;
+            genericResponse.Result.message = 'Sorry, there was an error saving the Venue Event. Error: ' + err;
+        } else {
+            genericResponse.Result = genericResponse.successResult;
+            genericResponse.Result.result = result;
+        };
+
+        res.send(genericResponse.Result);
     });
 
 };
@@ -35,13 +44,18 @@ exports.addEvent = function (req, res) {
 //TODO: implement it
 exports.removeEvent = function (params) {
     var genericResponse = new GenericResponse();
-    return Event.findById(params.id, function (err, event) {
-        return event.remove(function (err) {
+    return Event.findById(params.id, function (err, result) {
+        return result.remove(function (err, rs) {
             if (err) {
                 console.log(err);
-                res.send(genericResponse.errorResult);
-            } else 
-                res.send(genericResponse.successResult);
+                genericResponse.Result = genericResponse.errorResult;
+                genericResponse.Result.code = genericResponse.errorResult.code;
+            } else {
+                genericResponse.successResult.result = rs;
+                genericResponse.Result = genericResponse.successResult;
+            };
+
+            res.send(genericResponse.Result);
         });
     });
 };
