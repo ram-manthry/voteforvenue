@@ -7,7 +7,7 @@ var VoteSchema = new Schema({
     , placeId: { type: String, required: true }
     , sessionId: { type: String, required: true }
     , createdOn: { type: Date, default: Date.now }
-    , ip: { type: String, required: true }
+    , ip: { type: String, required: false }
     //, userAgent: { type: String, required: true }
 });
 
