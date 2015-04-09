@@ -1,4 +1,4 @@
-﻿var mongoose        = require('mongoose');
+var mongoose        = require('mongoose');
 var Vote            = require('../models/vote');
 var GenericResponse = require('../../common/sharedFunc');
 
@@ -18,18 +18,23 @@ exports.getVotes = function (req, res) {
 };
 
 exports.addVote = function (req, res) {    
-    var evt = req.body.eventId;
-    var sv = req.session.votes;
     var userHasVoted = false;
-    var us = req.sessionID;
-    var ip = req.ip;
-
+    var evt     = req.body.eventId;
+    var sv      = req.session.votes;    
+    var ss      = req.sessionID;
+    var plcId   = req.body.placeId;
+    var usr     = req.session.usr;
+    var ip      = req.ip;
+        
+    if(!ip) ip = req.socket._peername.address;    
+        
     var genericResponse = new GenericResponse();
     var vote = new Vote({
         addedBy: "noUser"
         , eventId: evt
-        , placeId: req.body.placeId
-        , sessionId: us
+        , placeId: plcId
+        , sessionId: ss
+        , user : usr
         , ip: ip
     });
 
@@ -39,7 +44,10 @@ exports.addVote = function (req, res) {
     //console.log(req.socket)
     //console.log("--------------------------------")
     //console.log(req.socket._peername)
-    //console.log(req.session.vote)
+    console.log("ip requested: " + req.ip)
+    //console.log(req.socket._peername.address)
+    console.log(req.session)
+    console.log(vote);
     //console.log("--------------------------------")
     
     if (!sv) {

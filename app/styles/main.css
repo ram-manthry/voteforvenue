@@ -238,4 +238,12 @@ scrollbar[orient="vertical"] {
     color:silver;
 }
 
+/****  FB User Login   *******/
+
+.userPic{
+    margin-top:2px;
+    margin-left:5px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;    
+}
 

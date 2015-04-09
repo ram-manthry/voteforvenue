@@ -1,4 +1,4 @@
-﻿
+
 <div>
 
     <!-- Modal -->
@@ -29,13 +29,14 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                 <span class="glyphicon glyphicon-chevron-down"></span>
-            </button>
+            </button>                    
 
-            <a href="#"><img src="/img/venueGreen48.png"></a>
+            <a href="#" id="userPic"><img src="/img/venueGreen48.png"></a>
+                        
+            <a href="#" id="userName" class="btn btn-primary hidden-sm hidden-md"><strong>Hi foreigner</strong></a>
 
-            <a class="navbar-brand" href="#">
-                <a class="btn btn-primary hidden-sm hidden-md"><strong>Vote For Venue</strong></a>
-            </a>
+            <a id="fbLogin" style="display:none" class="btn btn-primary hidden-sm hidden-md" onclick="face.fbLogin();return false;"><strong><span id="fbLoginText">Login</span></strong></a>
+            
         </div>
 
         <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -149,6 +150,8 @@
 
     $(function () {
 
+        face.getUserStatus();
+        
         var subBody = $('#subBody');
         subBody.fadeIn(1500);
 

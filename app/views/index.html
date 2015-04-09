@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" ng-cloak ng-app="app.venue">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <base href="/">
-    <title>{{mainViewModel.title}}</title>
+    <title>Vote For Venue</title>
 
     <link rel="stylesheet" href="/bower/angularjs-toaster/toaster.css" /> <!-- https://github.com/jirikavi/AngularJS-Toaster -->
     <link rel="stylesheet" href="/css/angular.animate.css" />
@@ -14,7 +14,8 @@
     <!--<link rel="stylesheet" href="/css/animate.css" />-->
 </head>
 
-<body>
+<body>    
+
     <toaster-container toaster-options="{'position-class': 'toast-bottom-left'}"></toaster-container>
     
     <div id="body" ng-controller="appVenueCtrl">
@@ -22,8 +23,11 @@
     </div>
 
     <hr />
+    
+    <div id="fb-root"></div>
 
-    <!--<footer class="footer" ng-include="'views/footer.html'"></footer>-->
+    <footer class="footer" ng-include="'views/footer.html'"></footer>
+
     
     <!-- http://angular-ui.github.io/bootstrap/ datepicker-->
     <script src="/bower/jquery/dist/jquery.min.js"></script>
@@ -47,7 +51,17 @@
     <script src="/js/angular/controllers/appVenueCtrl.js"></script>
     <script src="/js/angular/controllers/eventCtrl.js"></script>
     <script src="/js/angular/controllers/placesCtrl.js"></script>
+    
+    <!-- Facebook -->
+    <script src="js/common/facebook.js"></script>
+    
+    <script type="text/javascript">
 
+        $(function () {
+        });
+        
+    </script>            
+    
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-﻿
+
 <div>
     <div>
         <div id="subNavbar" class="navbar navbar-default navbar-fixed-top">
@@ -7,11 +7,9 @@
                     <span class="glyphicon glyphicon-chevron-down"></span>
                 </button>
 
-                <a href="#"><img src="/img/venueBlue48.png"></a>
-
-                <a class="navbar-brand" href="#">
-                    &nbsp;&nbsp;&nbsp;
-                </a>
+                <a href="#" id="userPic"><img src="/img/venueBlue48.png"></a>
+                
+                <a href="#" id="userName" class="btn btn-primary hidden-md hidden-sm"><strong>Hi foreigner</strong></a>
 
             </div>
 
@@ -23,21 +21,20 @@
                             <input type="text" class="form-control" placeholder="Venue Name" ng-model="plcCtrl.placeObj.name" required>
                         </form>
                         <form class="navbar-form navbar-left">
-                            <input type="text" class="form-control" placeholder="Location" ng-model="plcCtrl.placeObj.location" required>
+                            <input type="text" class="form-control btn-xs" placeholder="Location" ng-model="plcCtrl.placeObj.location" required>
                         </form>
                         <form class="navbar-form navbar-left">
-                            <input type="text" class="form-control" placeholder="Map url" ng-model="plcCtrl.placeObj.mapUrl" required>
+                            <input type="text" class="form-control btn-xs" placeholder="Map url" ng-model="plcCtrl.placeObj.mapUrl" required>
                         </form>
                     </li>
-
-                    <li>
+                    <!--<li>
                         <form class="navbar-form navbar-left">
                             <button class="form-control">
                                 <span class="glyphicon glyphicon-search"></span>
                                 <strong class="hidden-sm hidden-md">Search</strong>
                             </button>
                         </form>
-                    </li>
+                    </li>-->
 
                 </ul>
 
@@ -129,7 +126,8 @@
     </div>
 
     <script type="text/javascript">
-        $(function () {            
+        $(function () {         
+            face.getUserStatus();
             var subBody = $('#subBody');
             subBody.fadeIn(1500);            
         });

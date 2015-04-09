@@ -1,5 +1,6 @@
 var express   = require('express');
 var router    = express.Router();
+var userRepo  = require('../app/scripts/mongoose/repository/userRepo');
 var eventRepo  = require('../app/scripts/mongoose/repository/eventRepo');
 var placesRepo = require('../app/scripts/mongoose/repository/placesRepo');
 var voteRepo   = require('../app/scripts/mongoose/repository/voteRepo');
@@ -13,7 +14,7 @@ router.post('/events/add', function (req, res, next) {
    return eventRepo.addEvent(req, res);
 });
 router.delete('/events/:removeEventId', function (req, res){
-    return eventRepo.removeEvent(req.params);
+    return eventRepo.removeEvent(req);
 });
 
 
@@ -30,12 +31,16 @@ router.delete('/places/:removePlaceId', function (req, res, next) {
 
 /** Voting routing **/
 router.get('/voting/:eventId', function (req, res, next) {
-    //console.log('webapi.request voting:' + req.params.eventId);
     return voteRepo.getVotes(req, res);
 });
 router.post('/voting/addVote', function (req, res, next) {
-    //console.log("webapi.add voting:" + req.body.placeId);
     return voteRepo.addVote(req, res);
+});
+
+/** Session **/
+router.post('/usr/logUsr', function (req, res, next) {
+    console.log("user1 webapi");
+    return userRepo.logUsr(req, res);
 });
 
 module.exports = router;
