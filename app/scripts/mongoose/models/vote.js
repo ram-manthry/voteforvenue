@@ -8,7 +8,7 @@ var VoteSchema = new Schema({
     , sessionId: { type: String, required: false }
     , createdOn: { type: Date, default: Date.now }
     , ip: { type: String, required: false }
-    , user: { type:Object, required: true }
+    , user: { type:Object, required: false }
 });
 
 module.exports = mongoose.model('Votes', VoteSchema);
