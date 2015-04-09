@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
     , Schema = mongoose.Schema;
 
 var VoteSchema = new Schema({
-    addedBy: { type: String, required: true }
+    addedBy: { type: String, required: false }
     , eventId: { type: String, required: true }
     , placeId: { type: String, required: true }
     , sessionId: { type: String, required: false }

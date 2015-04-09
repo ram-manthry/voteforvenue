@@ -24,14 +24,23 @@ exports.addVote = function (req, res) {
         genericResponse.Result = genericResponse.authenticationResult;
         res.send(genericResponse.Result);
     } else {        
-        var evt = req.body.eventId;
-        var sv = req.session.votes;
-        var ss = req.sessionID;
-        var plcId = req.body.placeId;
-        var user = req.session.user;
-        var ip = req.ip;
-
-        if(!ip) ip = req.socket._peername.address;
+        var evt     = null;
+        var sv      = null;
+        var ss      = null;
+        var plcId   = null;
+        var user    = null;
+        var ip      = null;
+        
+        try{
+            evt = req.body.eventId;
+            sv = req.session.votes;
+            ss = req.sessionID;
+            plcId = req.body.placeId;
+            user = req.session.user;
+            ip = req.ip;
+            if(!ip) ip = req.socket._peername.address;
+        }catch (err) {
+        }
 
         Vote.findOne({ "user.userId": user.userId, "eventId": evt }, function (err, result) {
 
