@@ -14,34 +14,35 @@
     <!--<link rel="stylesheet" href="/css/animate.css" />-->
 </head>
 
-<body>    
+<body>
 
     <script src="js/common/fbSDK.js"></script>
 
     <toaster-container toaster-options="{'position-class': 'toast-bottom-left'}"></toaster-container>
-    
+
     <div id="body" ng-controller="appVenueCtrl">
         <div ui-view></div>
     </div>
 
     <hr />
-    
+
     <div id="fb-root"></div>
 
     <footer class="footer" ng-include="'views/footer.html'"></footer>
 
-    
+
     <!-- http://angular-ui.github.io/bootstrap/ datepicker-->
     <script src="/bower/jquery/dist/jquery.min.js"></script>
     <script src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script src="/bower/angular/angular.min.js"></script>
-    <script src="/bower/angularjs-toaster/toaster.js"></script>    
+    <script src="/bower/angularjs-toaster/toaster.js"></script>
     <script src="/bower/angular-animate/angular-animate.min.js"></script>
     <script src="/bower/angular-resource/angular-resource.min.js"></script>
-    <script src="/bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="/bower/angular-route/angular-route.min.js"></script>
     <script src="/bower/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <script src="/jsvd/ui-bootstrap-tpls.min.js"></script>
 
     <script src="/js/angular/app.module.js"></script>
     <script src="/js/angular/app.config.js"></script>
@@ -53,17 +54,19 @@
     <script src="/js/angular/controllers/appVenueCtrl.js"></script>
     <script src="/js/angular/controllers/eventCtrl.js"></script>
     <script src="/js/angular/controllers/placesCtrl.js"></script>
-    
+
     <!-- Facebook -->
     <script src="js/common/facebook.js"></script>
-    
+
     <script type="text/javascript">
 
         $(function () {
         });
-        
-    </script>            
-    
+
+    </script>
+
 </body>
+
+
 
 </html>

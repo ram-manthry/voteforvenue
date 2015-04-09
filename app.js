@@ -17,6 +17,7 @@ var MongoStore = require('connect-mongo')(session);
 var app = express();
 
 var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
+var uri3 = "mongodb://localhost/voteforvenue";
 
 console.log();
 console.log('*******************************************************');
@@ -52,6 +53,7 @@ app.use(cookieParser());
 app.use(favicon(__dirname + '/app/favicon.ico'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
 app.use('/js', express.static(__dirname + '/app/scripts'));
+app.use('/jsvd', express.static(__dirname + '/app/vendor'));
 app.use('/css', express.static(__dirname + '/app/styles'));
 app.use('/img', express.static(__dirname + '/app/images'));
 app.use('/fonts', express.static(__dirname + '/app/fonts'));
