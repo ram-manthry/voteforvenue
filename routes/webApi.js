@@ -7,7 +7,7 @@ var voteRepo   = require('../app/scripts/mongoose/repository/voteRepo');
 
 
 /** API Event routing **/
-router.get('/events', function(req, res, next) {
+router.get('/events', function (req, res, next) {    
     return eventRepo.getEvents(req, res);
 });
 router.post('/events/add', function (req, res, next) {
@@ -34,12 +34,12 @@ router.get('/voting/:eventId', function (req, res, next) {
     return voteRepo.getVotes(req, res);
 });
 router.post('/voting/addVote', function (req, res, next) {
+    //console.log('addvote');
     return voteRepo.addVote(req, res);
 });
 
 /** Session **/
-router.post('/usr/logUsr', function (req, res, next) {
-    console.log("user1 webapi");
+router.post('/usr/logUsr', function (req, res, next) {    
     return userRepo.logUsr(req, res);
 });
 

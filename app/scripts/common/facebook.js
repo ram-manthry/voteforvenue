@@ -1,27 +1,5 @@
-// Load the SDK asynchronously
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 
-var face = {};
-
-//Init method
-window.fbAsyncInit = function() {    
-    FB.init({
-        appId      : '852739154840167',
-        status     : true,
-        cookie     : true,  // enable cookies to allow the server to access 
-        // the session
-        xfbml      : true,  // parse social plugins on this page
-        version    : 'v2.3' // use version 2.3
-    });
-};
-
-face.currentUser = null;
+var face = { currentUser: null };
 
 face.userScope = function user_scope_fnc(response){
     return {
@@ -57,14 +35,15 @@ face.fbLogin = function fb_Login_fnc() {
 
 //Handle user login
 face.loginHandler = function loginHanlder_fnc(response){    
-    console.log(response);
+    //console.log(response);
     if (response.status === 'connected') {
         face.getUserDetails(response);
     } else if (response.status === 'not_authorized') {
         face.getUserDetails(response);
     } else {
+        face.send();
         face.displayLoginButton();
-        console.log('Please log into Facebook.');
+        //console.log('Please log into Facebook.');
     };
 };
 
@@ -90,10 +69,10 @@ face.setUserDetails = function setUserDetails_fnc(){
 //Send log
 face.send = function send_fnc(){
     $.ajax({
-        method: "POST",
-        url: "/api/usr/logUsr/" + new Date().getTime(),
-        cache: false,
-        data: face.currentUser
+        method: "POST"
+        , url: "/api/usr/logUsr" //+ new Date().getTime()
+        , cache: false
+        , data: face.currentUser
     })
     .done(function( msg ) {
         console.log('Markup set');

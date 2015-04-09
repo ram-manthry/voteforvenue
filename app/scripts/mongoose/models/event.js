@@ -7,6 +7,7 @@ var eventSchema = new Schema({
     , votingEndsOn: { type: Date, required:true }
     , friends: { type:Object, required:false }
     , eventImage: { type: String, required: false }
+    , user: { type: Object, required: false }
     , createdOn: { type: Date, default: Date.now }
 });
 

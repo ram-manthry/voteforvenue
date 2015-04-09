@@ -3,19 +3,19 @@
     angular.module('app.venue').controller('placesCtrl', ['$scope', '$stateParams', '$timeout', 'placesSvc', 'voteSvc', 'notificationSvc', 'keyEventsSvc', placesCtrl]);
     
     function placesCtrl($scope, params, $timeout, placesSvc, voteSvc, notificationSvc, keyEventsSvc) {
-        var vm           = this;
-        vm.placeObj      = placesSvc.getPlaceInstance();
-        vm.places        = [];
-        vm.eventId       = params.id;
-        vm.eventName     = params.name;
-        vm.name          = null;
-        vm.getPlaces     = getPlaces;
-        vm.addPlace      = addPlace;
-        vm.vote          = voteForPlace;
-        vm.disabledVotes = false;
+        var vm            = this;
+        vm.placeObj       = placesSvc.getPlaceInstance();
+        vm.places         = [];
+        vm.eventId        = params.id;
+        vm.eventName      = params.name;
+        vm.name           = null;
+        vm.getPlaces      = getPlaces;
+        vm.addPlace       = addPlace;
+        vm.vote           = voteForPlace;
+        vm.disabledVotes  = false;
 
         vm.getPlaces();
-                
+
         function getPlaces() {
             if (vm.eventId) {
                 placesSvc.getPlaces(vm.eventId, function getPlaces_callback(data) {
@@ -59,7 +59,7 @@
         function voteForPlace(place) {
             //console.log(place);
             if (vm.disabledVotes) {
-                notificationSvc.warning('Your already voted ;) ');
+                notificationSvc.warning("You've already voted ;) ");
                 return;
             }
             if (place && place.eventId) {
@@ -71,6 +71,9 @@
                         vm.disabledVotes = true;
                     } else if (result.code === 304) {
                         notificationSvc.warning(result.message);
+                    } else if (result.code === 407) {
+                        notificationSvc.warning(result.message);                        
+                        eval(face.fbLogin());
                     } else {
                         notificationSvc.displayNotification(false, "Your vote was not computed.", 500);
                     }

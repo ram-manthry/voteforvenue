@@ -24,6 +24,7 @@ exports.addPlace = function (req, res) {
         , location: req.body.location
         , mapUrl  : req.body.mapUrl
         , eventId : req.body.eventId
+        , user    : req.session.user
     });
 
     place.save(function (err, result) {

@@ -18,6 +18,7 @@ exports.getEvents = function (req, res) {
 };
 
 exports.addEvent = function (req, res) {
+    
     var genericResponse = new GenericResponse();
     var event = new Event({
         title: req.body.title
@@ -25,6 +26,7 @@ exports.addEvent = function (req, res) {
         , votingEndsOn: req.body.votingEndsOn
         , friends: req.body.friends
         , eventImage: req.body.eventImage
+        , user: req.session.user
     });
 
     event.save(function (err, result) {
