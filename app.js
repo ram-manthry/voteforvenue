@@ -16,7 +16,7 @@ var MongoStore = require('connect-mongo')(session);
  **/
 var app = express();
 
-var uri = "mongodb://ram-manthry:rammanthry@ds052837.mongolab.com:52837/voteforvenue";
+var uri = "mongodb://vfvuser:123456@ds052837.mongolab.com:52837/voteforvenue";
 var uri3 = "mongodb://localhost/voteforvenue";
 
 console.log();

@@ -49,15 +49,27 @@
         };
 
         function getPlaceVotes(dt) {
-            if (dt.result && dt.result.length > 0) {
-                dt.result.forEach(function (v, j, list) {
-                    setVotesForSpecificPlace(list[j].placeId);
-                });
-            };
+
+            vm.places.forEach(function (e, j, list) {
+                list[j].isTheUserVote = false;
+                list[j].hasVoteResponse = true;
+
+                if (list[j].quantityOfVotes === undefined || list[j].quantityOfVotes === null) {
+                    list[j].quantityOfVotes = 0;
+                };
+
+                if (dt.result && dt.result.length > 0) {
+                    dt.result.forEach(function (v, i, arr) {                        
+                        if (arr[i].placeId === list[j]._id) {
+                            list[j].quantityOfVotes += 1;
+                            if (arr[i].isTheUserVote) list[j].isTheUserVote = arr[i].isTheUserVote;
+                        };
+                    });
+                };
+            });
         };
 
         function voteForPlace(place) {
-            //console.log(place);
             if (vm.disabledVotes) {
                 notificationSvc.warning("You've already voted ;) ");
                 return;
@@ -87,12 +99,13 @@
 
         function setVotesForSpecificPlace(placeId) {
             vm.places.forEach(function (e, i, arr) {
-                if (arr[i]._id === placeId)
+                arr[i].hasVoteResponse = true;
+                if (arr[i]._id === placeId) {
                     if (!arr[i].quantityOfVotes) arr[i].quantityOfVotes = 1;
                     else arr[i].quantityOfVotes += 1;
+                }
             });
         };
-
     };
     
 }) ()

@@ -9,9 +9,29 @@ exports.getVotes = function (req, res) {
         if (err) {
             res.send(genericResponse.errorResult);
         } else {
+            var list = [];
+            result.forEach(function (e, i, arr) {
+                var dt = {
+                    _id: arr[i]._id,
+                    addedBy: arr[i].addedBy,
+                    eventId: arr[i].eventId,
+                    placeId: arr[i].placeId,
+                    sessionId: arr[i].sessionId,
+                    createdOn: arr[i].createdOn,
+                    isTheUserVote: false,
+                    userId: arr[i].user.userId
+                };
+                if (req.session && req.session.user && req.session.user.userId) {
+                    if (dt.userId === req.session.user.userId) {
+                        dt.isTheUserVote = true;
+                    };
+                };
+                list.push(dt);
+            });
+
             genericResponse.Result = genericResponse.successResult;
-            genericResponse.Result.result = result;
-        }
+            genericResponse.Result.result = list;
+        };
 
         res.send(genericResponse.Result);
     });
@@ -24,22 +44,22 @@ exports.addVote = function (req, res) {
         genericResponse.Result = genericResponse.authenticationResult;
         res.send(genericResponse.Result);
     } else {        
-        var evt     = null;
-        var sv      = null;
-        var ss      = null;
-        var plcId   = null;
-        var user    = null;
-        var ip      = null;
-        
-        try{
-            evt = req.body.eventId;
-            sv = req.session.votes;
-            ss = req.sessionID;
-            plcId = req.body.placeId;
-            user = req.session.user;
-            ip = req.ip;
-            if(!ip) ip = req.socket._peername.address;
-        }catch (err) {
+        var evt         = null;
+        var sv          = null;
+        var ss          = null;
+        var plcId       = null;
+        var user        = null;
+        var ip          = null;
+
+        try {
+            evt         = req.body.eventId;
+            sv          = req.session.votes;
+            ss          = req.sessionID;
+            plcId       = req.body.placeId;
+            user        = req.session.user;
+            ip          = req.ip;
+            if (!ip) ip = req.socket._peername.address;
+        } catch (err) {
         }
 
         Vote.findOne({ "user.userId": user.userId, "eventId": evt }, function (err, result) {
