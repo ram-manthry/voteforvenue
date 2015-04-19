@@ -19,7 +19,7 @@ exports.getVotes = function (req, res) {
                     sessionId: arr[i].sessionId,
                     createdOn: arr[i].createdOn,
                     isTheUserVote: false,
-                    userId: arr[i].user.userId
+                    userId: (arr[i].user) ? arr[i].user.userId : null
                 };
                 if (req.session && req.session.user && req.session.user.userId) {
                     if (dt.userId === req.session.user.userId) {

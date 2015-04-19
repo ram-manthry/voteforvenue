@@ -131,9 +131,10 @@
 
     <script type="text/javascript">
         $(function () {
-            face.getUserStatus();
             var subBody = $('#subBody');
             subBody.fadeIn(1500);
+
+            setTimeout(function () { face.getUserStatus(); }, 1000);
         });
     </script>
 
