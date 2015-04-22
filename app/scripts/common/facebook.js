@@ -32,23 +32,22 @@ face.fbLogin = function fb_Login_fnc() {
 };
 
 //Handle user login
-face.loginHandler = function loginHanlder_fnc(response){    
-    //console.log(response);
+face.loginHandler = function loginHanlder_fnc(response) {
+    console.log(response);
     if (response.status === 'connected') {
         face.getUserDetails(response);
     } else if (response.status === 'not_authorized') {
         face.getUserDetails(response);
-    } else {
-        face.currentUser = null;
-        face.send();
-        face.setUserDetails();
-        face.displayLoginButton();
+    } else {        
+        face.setError();
     };
 };
 
 //Call API to get user logged details
 face.getUserDetails = function getUserDetails_fnc(response){
-    FB.api('/me', function(res) {            
+    FB.api('/me', function (res) {
+        if (res.error) { face.currentUser = null; face.setError(); return false; }
+
         face.currentUser = face.userScope(res);
         face.setUserDetails();
         face.send();
@@ -88,6 +87,13 @@ face.send = function send_fnc(){
 //            window.location = "\Index";
 //        });
     });
+};
+
+
+face.setError = function setError_fnc() {
+    face.send();
+    face.setUserDetails();
+    face.displayLoginButton();
 };
 
 //Set user Details
