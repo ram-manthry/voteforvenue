@@ -85,7 +85,7 @@ face.setUserDetails = function setUserDetails_fnc(){
 face.send = function send_fnc(){
     $.ajax({
         method: "POST"
-        , url: "/api/usr/vtSr/?" + new Date().getTime()
+        , url: "/api/usr/vtSr?itx=" + new Date().getTime()
         , cache: false
         , data: face.currentUser ? face.currentUser : {}
     })
