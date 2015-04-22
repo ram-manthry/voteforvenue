@@ -39,7 +39,7 @@ router.post('/voting/addVote', function (req, res, next) {
 });
 
 /** Session **/
-router.post('/usr/logUsr', function (req, res, next) {    
+router.post('/usr/logUsr', function (req, res, next) {
     return userRepo.logUsr(req, res);
 });
 

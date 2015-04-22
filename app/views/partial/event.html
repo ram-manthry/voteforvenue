@@ -22,8 +22,7 @@
             </div>
         </div>
     </div>
-
-
+        
     <div id="subNavbar" class="navbar navbar-default navbar-fixed-top">
 
         <div class="navbar-header">
@@ -35,8 +34,8 @@
                         
             <a href="#" id="userName" class="btn btn-primary hidden-sm hidden-md"><strong>Hi foreigner</strong></a>
 
-            <a id="fbLogin" style="display:none" class="btn btn-primary hidden-sm hidden-md" onclick="face.fbLogin();return false;"><strong><span id="fbLoginText">Login</span></strong></a>
-            
+            <a id="userLogin" class="btn btn-primary hidden-sm hidden-md" data-toggle="modal" data-target="#loginModal"><strong><span id="fbLoginText">Login</span></strong></a>
+                        
         </div>
 
         <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -81,7 +80,7 @@
                 <li>
                     <form class="navbar-form">
                         <input ng-bind="evtCtrl.friends" type="hidden"></input>
-                        <button id="friendsBtn" type="button" class="form-control" data-toggle="modal" data-target="#friends">
+                        <button type="button" class="form-control" data-toggle="modal" data-target="#friends">
                             <img src="/img/venueInv32.png" />
                             <strong class="hidden-md hidden-sm">Invite friends</strong>
                         </button>

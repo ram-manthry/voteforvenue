@@ -3,6 +3,7 @@ var GenericResponse = require('../../common/sharedFunc');
 
 exports.logUsr = function (req, res) {
     
+    //console.log("user:" + req.body.url);
     //console.log("user:" + req.body.scopeId);
     //console.log("user:" + req.body.email);
     //console.log("user:" + req.body.userName);
