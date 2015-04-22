@@ -1,26 +1,24 @@
 
 var face = { currentUser: null };
 
-face.userScope = function user_scope_fnc(response){
-    return {
-        scopeId     : response.id,
-        email       : response.email,
-        userName    : response.name,
-        firstName   : response.first_name,
-        lastName    : response.last_name
-    };
+face.userScope = function user_scope_fnc(response) {
+    if (response)
+        return {
+            scopeId     : response.id,
+            email       : response.email,
+            userName    : response.name,
+            firstName   : response.first_name,
+            lastName    : response.last_name
+        };
+    else return {};
 };
 
 //Get login status if needed
-face.getUserStatus = function getLoginStatus_fnc(){
-    if(face.currentUser){
-        face.setUserDetails();
-    }else{        
-        //Check login when page loads
-        FB.getLoginStatus(function(response) {
-            face.loginHandler(response);
-        });
-    }
+face.getUserStatus = function getLoginStatus_fnc(){     
+    //Check login when page loads
+    FB.getLoginStatus(function(response) {
+        face.loginHandler(response);
+    });
 };
 
 
@@ -41,9 +39,10 @@ face.loginHandler = function loginHanlder_fnc(response){
     } else if (response.status === 'not_authorized') {
         face.getUserDetails(response);
     } else {
+        face.currentUser = null;
         face.send();
+        face.setUserDetails();
         face.displayLoginButton();
-        //console.log('Please log into Facebook.');
     };
 };
 
@@ -59,20 +58,26 @@ face.getUserDetails = function getUserDetails_fnc(response){
 
 //Set user Details
 face.setUserDetails = function setUserDetails_fnc(){
-    // Logged into your app and Facebook.
+    var url = '<img src="/img/venueGreen48.png">';
+    var greeting = 'Hi foreigner';
+    if (face.currentUser && face.currentUser !== null) {
+        url = '<img class="userPic" src="https://graph.facebook.com/' + face.currentUser.scopeId + '/picture">';
+        greeting = "Hi " + face.currentUser.firstName + ' ' + face.currentUser.lastName;
+    }
+
     var userPic = document.getElementById('userPic');
     var userName = document.getElementById('userName');
-    if(userPic) userPic.innerHTML = '<img class="userPic" src="https://graph.facebook.com/' + face.currentUser.scopeId + '/picture">';
-    if(userName) userName.innerHTML = "Hi " + face.currentUser.firstName + ' ' + face.currentUser.lastName;    
+    if (userPic) userPic.innerHTML = url;
+    if (userName) userName.innerHTML = greeting;
 };
 
 //Send log
 face.send = function send_fnc(){
     $.ajax({
         method: "POST"
-        , url: "/api/usr/logUsr" //+ new Date().getTime()
+        , url: "/api/usr/vtSr" //+ new Date().getTime()
         , cache: false
-        , data: face.currentUser
+        , data: face.currentUser ? face.currentUser : {}
     })
     .done(function( msg ) {
         console.log('Markup set');

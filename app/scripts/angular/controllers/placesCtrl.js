@@ -49,23 +49,29 @@
         };
 
         function getPlaceVotes(dt) {
-
+            var ind = 0;
             vm.places.forEach(function (e, j, list) {
+                var votes = '';
                 list[j].isTheUserVote = false;
                 list[j].hasVoteResponse = true;
 
                 if (list[j].quantityOfVotes === undefined || list[j].quantityOfVotes === null) {
                     list[j].quantityOfVotes = 0;
                 };
-
+                
                 if (dt.result && dt.result.length > 0) {
-                    dt.result.forEach(function (v, i, arr) {                        
+                    dt.result.forEach(function (v, i, arr) {
+
                         if (arr[i].placeId === list[j]._id) {
                             list[j].quantityOfVotes += 1;
+                            if (arr[i].userName && arr[i].userName !== '') votes += '<li>' + arr[i].userName + '</li>';
                             if (arr[i].isTheUserVote) list[j].isTheUserVote = arr[i].isTheUserVote;
                         };
                     });
                 };
+
+                list[j].voteNames = votes;
+
             });
         };
 

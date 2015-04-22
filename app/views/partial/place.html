@@ -10,7 +10,7 @@
                 <a href="#" id="userPic"><img src="/img/venueBlue48.png"></a>
 
                 <a href="#" id="userName" class="btn btn-primary hidden-md hidden-sm"><strong>Hi foreigner</strong></a>
-                
+
                 <a id="fbLogin" style="display:none" class="btn btn-primary hidden-sm hidden-md" onclick="face.fbLogin();return false;"><strong><span id="fbLoginText">Login</span></strong></a>
             </div>
 
@@ -69,10 +69,13 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div name="tp" data-toggle="tooltip" data-placement="top" title="" data-original-title=""></div>
+
+            <div class="row" id="data">
                 <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-repeat="place in plcCtrl.places">
+
                     <div class="bs-component">
-                        <div class="modal">
+                        <div class="modal" name="placeModal">
                             <div class="modal-sm">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -83,7 +86,7 @@
                                             <span class="col-lg-9 col-md-9 col-sm-9"><h2 class="modal-title">{{place.name}}</h2></span>
                                         </div>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body modalOverflow">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 pull-left">
                                                 <strong>Location: </strong><span ng-bind="place.location"></span>
@@ -91,18 +94,20 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12 pull-left">
+                                            <div class="map col-lg-12 col-md-12 col-sm-12 col-sm-12 pull-left ">
                                                 <strong>Map: </strong><a href="{{place.mapUrl}}">{{place.mapUrl}}</a>
                                             </div>
                                         </div>
 
                                         <div class="row">&nbsp;</div>
 
+
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6">
-                                                <div class="btn btn-primary pull-left" ng-show="place.quantityOfVotes >= 0 ">
+                                                <div class="btn btn-primary pull-left" ng-show="place.quantityOfVotes >= 0" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{place.voteNames}}">
                                                     <span class="badge">{{place.quantityOfVotes}}</span>
                                                 </div>
+
                                                 <div ng-hide="place.hasVoteResponse">
                                                     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                                                 </div>
@@ -118,6 +123,14 @@
                                                 </span>
                                             </div>
                                         </div>
+
+                                        <script type="text/javascript">
+                                            $('.modal').hover(function () {
+                                                $(this).find('[data-toggle="tooltip"]').tooltip({ html: true, show: true, tooltiparrow:false });
+                                            }, function () {
+                                                $(this).find('[data-toggle="tooltip"]').tooltip('hide');
+                                            });
+                                        </script>
 
                                     </div>
                                 </div>
@@ -135,7 +148,9 @@
             var subBody = $('#subBody');
             subBody.fadeIn(1500);
 
-            setTimeout(function () { face.getUserStatus(); }, 1000);
+            $('[data-toggle="tooltip"]').tooltip();
+
+            setTimeout(function () { face.getUserStatus(); }, 500);
         });
     </script>
 
