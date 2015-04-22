@@ -16,9 +16,7 @@
 
 <body>
 
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
     <script src="js/common/fbSDK.js"></script>
-    <script src="js/common/gmailSDK.js"></script>
 
     <toaster-container toaster-options="{'position-class': 'toast-bottom-left'}"></toaster-container>
 
@@ -28,27 +26,10 @@
 
     <hr />
 
-    <div class="modal" id="loginModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body text-justify">
-                    <br />
-                    <h3>Do you want login with Gmail or Facebook?</h3>
-                    
-                    <hr>
-                    <button id="authorize-button" type="button" class="btn btn-primary pull-left" data-dismiss="modal" onclick="handleAuthClick(); return false;">Gmail Account</button>
-                    <button id="fbLogin" type="button" class="btn btn-success pull-right" data-dismiss="modal" onclick="face.fbLogin();return false;">Facebook  Account</button>
-                    <br /> &nbsp;
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div id="fb-root"></div>
 
-    <!--<footer class="footer" ng-include="'views/footer.html'"></footer>-->
-         
+    <footer class="footer" ng-include="'views/footer.html'"></footer>
+
 
     <!-- http://angular-ui.github.io/bootstrap/ datepicker-->
     <script src="/bower/jquery/dist/jquery.min.js"></script>
@@ -74,14 +55,12 @@
     <script src="/js/angular/controllers/eventCtrl.js"></script>
     <script src="/js/angular/controllers/placesCtrl.js"></script>
 
-    <!-- Facebook/Gmail -->
-    <script src="js/common/authentication.js"></script>
+    <!-- Facebook -->
+    <script src="js/common/facebook.js"></script>
 
     <script type="text/javascript">
 
         $(function () {
-            
-            setTimeout(function () { handleClientLoad(); }, 500);
         });
 
     </script>

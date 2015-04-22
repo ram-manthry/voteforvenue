@@ -56,10 +56,8 @@
         };
                 
         function addFriend(f) {
-            if (f && f !== null) {
-                vm.eventObj.friends.push({ order: vm.eventObj.friends.length, value: f });
-                vm.friend = null;
-            }
+            vm.eventObj.friends.push({ order: vm.eventObj.friends.length, value: f });
+            vm.friend = null;
         };
 
         function openEventDate($event) {
