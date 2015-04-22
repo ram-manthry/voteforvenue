@@ -105,13 +105,6 @@ face.setError = function setError_fnc() {
     face.isLoginButtonVisible();
 };
 
-//Set user Details
-face.isLoginButtonVisible = function displayLoginButton_fnc() {
-    var loginButton = document.getElementById('userLogin');
-    if (!loginButton) return;
-    loginButton.style.display = (face.currentUser && face.currentUser !== null) ? 'none' : 'inline-block';
-};
-
 
 /** GMAIL  **/
 function checkAuth() {
@@ -169,3 +162,10 @@ function makeApiCall() {
     });
 };
 
+
+//Set user Details
+face.isLoginButtonVisible = function displayLoginButton_fnc() {
+    var loginButton = document.getElementById('userLogin');
+    if (!loginButton) return;
+    loginButton.style.display = (face.currentUser && face.currentUser !== null) ? 'none' : 'inline-block';
+};
