@@ -3,11 +3,12 @@ var GenericResponse = require('../../common/sharedFunc');
 
 exports.logUsr = function (req, res) {
     
-    //console.log("user:" + req.body.scopeId);
-    //console.log("user:" + req.body.email);
-    //console.log("user:" + req.body.userName);
-    //console.log("user:" + req.body.firstName);
-    //console.log("user:" + req.body.lastName);
+    console.log("user:" + req.body.url);
+    console.log("user:" + req.body.scopeId);
+    console.log("user:" + req.body.email);
+    console.log("user:" + req.body.userName);
+    console.log("user:" + req.body.firstName);
+    console.log("user:" + req.body.lastName);
     
     var genericResponse = new GenericResponse();
     req.session.user = {
