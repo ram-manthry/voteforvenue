@@ -83,6 +83,7 @@ face.setUserDetails = function setUserDetails_fnc(){
 
 //Send log
 face.send = function send_fnc(){
+    console.log(face.currentUser);
     $.ajax({
         method: "POST"
         , url: "/api/usr/vtSr" //?itx=" + new Date().getTime()
@@ -138,10 +139,10 @@ function handleAuthClick(event) {
 // Load the API and make an API call.  Display the results on the screen.
 function makeApiCall() {
 
-    if (FB.getAccessToken() != null) {
-        FB.logout(function (response) {            
-        });
-    }
+//    if (FB.getAccessToken() != null) {
+//        FB.logout(function (response) {            
+//        });
+//    }
 
     // Step 4: Load the Google+ API
     gapi.client.load('plus', 'v1').then(function () {
