@@ -91,7 +91,7 @@
                         notificationSvc.warning(result.message);
                     } else if (result.code === 407) {
                         notificationSvc.warning(result.message);                        
-                        //eval(face.fbLogin());
+                        eval(face.fbLogin());
                     } else {
                         notificationSvc.displayNotification(false, "Your vote was not computed.", 500);
                     }
