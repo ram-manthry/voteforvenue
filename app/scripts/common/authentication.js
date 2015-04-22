@@ -26,9 +26,6 @@ face.getUserStatus = function getLoginStatus_fnc(){
 //Login 
 face.fbLogin = function fb_Login_fnc() {
     //Remove any previous login
-    face.currentUser = null;
-    face.setError();
-
     FB.login(function(response) {
         face.loginHandler(response);
     }, {
@@ -88,7 +85,7 @@ face.setUserDetails = function setUserDetails_fnc(){
 face.send = function send_fnc(){
     $.ajax({
         method: "POST"
-        , url: "/api/usr/vtSr" //+ new Date().getTime()
+        , url: "/api/usr/vtSr/?" + new Date().getTime()
         , cache: false
         , data: face.currentUser ? face.currentUser : {}
     })
@@ -133,6 +130,12 @@ function handleAuthClick(event) {
 
 // Load the API and make an API call.  Display the results on the screen.
 function makeApiCall() {
+
+    if (FB.getAccessToken() != null) {
+        FB.logout(function (response) {            
+        });
+    }
+
     // Step 4: Load the Google+ API
     gapi.client.load('plus', 'v1').then(function () {
         // Step 5: Assemble the API request
